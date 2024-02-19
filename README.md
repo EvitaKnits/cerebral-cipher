@@ -189,6 +189,7 @@ The live link can be found here:
 ## CREDITS
 
 ### Content
+I used this rulebook for the original Mastermind game: https://www.pressmantoy.com/wp-content/uploads/2018/07/3018K10_v1_0218_Mastermind_IM.pdf
 
 ### Media
 

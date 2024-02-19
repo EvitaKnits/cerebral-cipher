@@ -1,7 +1,15 @@
 /* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Hind:wght@300;400;500;600;700&display=swap');
 
 /* GENERAL STYLES */
 
+body {
+    font-family: 'Hind', sans-serif;
+}
+
+h1 {
+  font-family: 'Expletus Sans', sans-serif;  
+}
 /* RULES MODAL */
 
 /* ABOUT MODAL */

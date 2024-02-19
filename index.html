@@ -28,29 +28,31 @@
 
 </head>
 <body>
-    <header>
+    <header id="game-title">
         <h1>CEREBRAL CIPHER</h1>
         <p>Can you crack the code?</p>
     </header>
-    <section> 
+    <section id="code-buttons"> 
         <div>
-            <div>
+            <div id="code">
                 <h2>Choices Set</h2>
             </div>
-            <div>
+            <div id="buttons">
                 <button>Rules</button>
                 <button>New Game</button>
                 <button>About</button>
             </div>
         </div>
     </section>
-    <section>
-        <div>
+    <section id="game-area">
+        <div class="guess-row">
             <p>1</p>
+            <span id="colour-circles"></span>
+            <span id="feedback-circles"></span>
         </div>
     </section>
     <footer>
-        <div>
+        <div id="colour-controls">
             <p>Colours</p>
             <button>Red</button>
             <button>Blue</button>
@@ -59,7 +61,7 @@
             <button>White</button>
             <button>Black</button>
         </div>
-        <div>
+        <div id="other-controls">
             <p>Controls</p>
             <button>Submit</button>
             <button>Undo</button>

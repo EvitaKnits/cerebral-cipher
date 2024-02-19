@@ -50,7 +50,9 @@ One for the mobile version.
 
 ### Colour Palette
 
-The game already has 6 colours for the code that is being guessed, so my colour scheme needed to coordinate with this to some extent. I took some time to pick a colour scheme that I thought was fun and engaging without being too intrusive as there are a lot of components that will be on the page at once. Here is what I chose:
+This game already has 4 bold primary/secondary colours, as well as black and white, as an integral part of the gameplay. I wanted to tone this down slightly so it can appear more stylish and be less harsh on the eyes for those that want to play more than a game or two. Here is what I chose from left to right, top row, then bottom row.  I found more muted versions of those 4 bold primary/secondary colours, chose a nice creamy-beige instead of the white, and chose a very dark grey instead of the black. I then found complementary background and accent colours.
+
+![Colour Scheme](documentation/colour-scheme.png)
 
 ## FEATURES
 

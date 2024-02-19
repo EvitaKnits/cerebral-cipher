@@ -1,110 +1,206 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome Evita Orrock,
+# Cerebral Cipher: a logic puzzle game played against the computer
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+'Cerebral Cipher' is a site that hosts a small logic puzzle game based on the popular physical boardgame 'Mastermind'. 
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## REQUIREMENT GATHERING AND PLANNING
 
-## Gitpod Reminders
+Before starting this project, I took some time to think about how to set up, lay out and develop this game. I wrote a few user stories and extracted the user needs from them as well. These needs will also help in my manual testing. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+### User Stories:
 
-`python3 -m http.server`
+As a player
+I want a game that is clearly laid out and intuitive
+So that I can easily understand how to play it and find all the parts I need
 
-A blue button should appear to click: _Make Public_,
+As a player
+I want to control my guess input
+So that I am not stuck with the first four guesses I put in, should I change my mind
 
-Another blue button should appear to click: _Open Browser_.
+As a player
+I want to be given enough chances to make my guess and learn from the feedback
+So that the game is satisfying and gives me adequate chance to win, without letting me go on infinitely
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+As a player
+I want to be able to refer to the rules
+So that I can look at them at any point during the game to remind myself of anything I've forgotten
 
-A blue button should appear to click: _Make Public_,
+As a player
+I want to be able to play more than one game
+So that I can play the number of games I desire
 
-Another blue button should appear to click: _Open Browser_.
+### User Needs:
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- A clear and intuitive lay out
+- Controls to amend the existing guesses prior to submission 
+- A good number of rounds in each game
+- Feedback on my guesses
+- A rulebook
+- A clear end game phase
+- A method of starting a new game
 
-To log into the Heroku toolbelt CLI:
+### Wireframes
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+With my list of requirements, I created two wireframes.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+One for the tablet/desktop version. 
 
-------
+One for the mobile version. 
 
-## Release History
+### Colour Palette
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+The game already has 6 colours for the code that is being guessed, so my colour scheme needed to coordinate with this to some extent. I took some time to pick a colour scheme that I thought was fun and engaging without being too intrusive as there are a lot of components that will be on the page at once. Here is what I chose:
 
-**September 20 2023:** Update Python version to 3.9.17.
+## FEATURES
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### Existing Features
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+#### Computer Choice Indicator
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+#### Navigation Section
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+This section contains the 'Rules', 'New Game' and 'About' buttons. 
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+#### Game Area
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+#### Controls Panel
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+#### Rules Information
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+#### About Information
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Features Left to Implement
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#### Dark Mode
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#### Hard Mode
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+#### Endless Guess Mode
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## TESTING
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+I completed the following types of testing throughout development and at the end of my project: 
 
-------
+### Manual Feature Testing
 
-## FAQ about the uptime script
+As well as running through the list of user needs and ensuring all the features collectively meet all of the needs, I completed the following manual feature testing: 
 
-**Why have you added this script?**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+| Feature           | Test Case | Outcome | Bugs? |
+| ----------------  | -------   | ----    | ----- |
 
-**How will this affect me?**
+### Browser Compatibility and Screen Size Responsiveness
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+I viewed the game on each of the three key screen sizes (mobile, tablet and computer), using the devtools, on four of the most popular browsers. I also used the responsive setting to slide the width of the screen from narrow all the way through to wide to check the transition points. 
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+Pixel references for each of the screen sizes 
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+|Screen | Pixels |
+|-----|-----|
+| Mobile - iPhone SE | 375px |
+| Tablet - iPad Mini | 768px |
+| Computer | 1366px |
 
-**So….?**
+| Browser | Screen Size | Appearance | Responsiveness |
+|-------|-----|-----|-----|
+| Chrome | Mobile |  |  |
+| | Tablet |  |  |
+| | Computer |  |  |
+| | Transition Points |  |  |
+| Firefox | Mobile |  |  |
+| | Tablet |  |  |
+| | Computer |  |  |
+| | Transition Points |  |  |
+| Safari | Mobile |  |  |
+| | Tablet |  |  |
+| | Computer |  |  |
+| | Transition Points |  |  |
+| Edge | Mobile |  |  |
+| | Tablet |  |  |
+| | Computer |  |  |
+| | Transition Points |  |  |
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+#### Key Responsiveness Differences
 
-**Can I opt out?**
+The game takes up the whole width of the screen in mobile phone and smaller tablet sizes. The footer is fixed and contains the controls in a row for this size. 
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+In the larger tablets upwards (including laptops and desktop monitors), the game appears in the centre of the screen and the controls are no longer found in the footer, but in a column alongside the main game area. 
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+### Code Validation
 
-**Anything more?**
+This was carried out by both link and direct input on the following tools: 
+- HTML via [W3C](https://validator.w3.org/)
+- CSS via [Jigsaw](https://jigsaw.w3.org/css-validator/)
+- JavaScript via [Linter]()
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+I completed the validation after resolving all my bugs. 
 
----
+The CSS...
 
-Happy coding!
+The HTML...
+
+The JavaScript...
+
+### Lighthouse and Accessibility Testing
+
+I used Lighthouse in Chrome Devtools on the single page of my site, using the mobile setting.
+
+After resolving my lighthouse bugs, I reran the report. Here are the new results: 
+
+#### Colour Contrast
+I also checked the colour contrast using of my color palette combinations using Coolors: https://coolors.co/contrast-checker/112a46-acc8e5.
+
+#### Alternative Text 
+
+I went through the site systematically, checking that each image had alternative text.
+
+### Resolved Bugs
+
+#### Bug One
+
+**Issue:** The title above the YouTube video is not aligned with the left edge of the video, whereas the title above the image next to the YouTube video is (see image below). This is only on screens larger than a tablet. 
+
+**BEFORE**
+
+![Bug One]()
+
+**Fix:** 
+
+**AFTER**
+
+### Unresolved Bugs
+
+I don't believe I have left any of my bugs unresolved.
+
+## DEPLOYMENT
+
+The site was deployed to GitHub pages. 
+
+The steps to deploy are as follows:
+- In the GitHub repository, navigate to the Settings tab
+- Under 'Code and automation' in the left hand menu, click on 'Pages'
+- Make sure the 'Source' and 'Branch' fields are set to 'Deploy from branch' and 'Main' respectively.
+- Click save. 
+- If the page does not automatically refresh, manually refresh it and at the top there should be a box that states 'Your site is live at' followed by the URL. 
+
+The live link can be found here:
+
+## CREDITS
+
+### Content
+
+### Media
+
+**Favicon**
+I got my icon from here: https://www.flaticon.com/free-icon/brain_3286097?term=brain&page=1&position=22&origin=search&related_id=3286097
+I generated the code to paste in the head of my HTML file here: https://realfavicongenerator.net/
+
+### Sources of Learning
+
+### General Credit
+I want to thank the open source community for the great resources that remind me of what I learnt in my Code Institute lessons, especially https://www.w3schools.com/ and https://developer.mozilla.org/en-US/
+
+I believe I have specifically credited where I used specific items in the previous section but this is a general credit to the reference resources I looked through to remind me how things worked as I went along.  
+
+Every effort has been made to credit everything used but if I find anything else specific later on that needs crediting, that I missed, I will add it. 

@@ -75,3 +75,17 @@ function showRules() {
 function showAbout() {
 
 }
+
+/**
+ * This function hides the Rules modal box.
+ */
+function hideRules() {
+
+}
+
+/**
+ * This function hides the About modal box. 
+ */
+function hideAbout() {
+
+}

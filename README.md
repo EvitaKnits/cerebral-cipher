@@ -6,7 +6,7 @@
 
 ## REQUIREMENT GATHERING AND PLANNING
 
-Before starting this project, I took some time to think about how to set up, lay out and develop this game. I wrote a few user stories and extracted the user needs from them as well. These needs will also help in my manual testing. 
+Before starting this project, I took some time to think about how to set up, lay out and develop this game. I wrote a few user stories and extracted the user needs from them as well. These needs will also help in my manual testing. For my technical preparation, I considered which functions I will require, as well as the potential way to organise my HTML IDs for styling use with my CSS.
 
 ### User Stories:
 
@@ -39,6 +39,10 @@ So that I can play the number of games I desire
 - A rulebook
 - A clear end game phase
 - A method of starting a new game
+
+### Flowchart
+
+Here is the flowchart I created to visualise the user journey and system interactions and data flow.
 
 ### Wireframes
 

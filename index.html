@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +28,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+
 <body>
     <main>
         <header>
@@ -37,19 +39,19 @@
             </div>
         </header>
         <section id="code-buttons">
-                <div id="code">
-                    <h2>Code Set</h2>
-                    <div>
+            <div id="code">
+                <h2>Code Set</h2>
+                <div>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    </div>
                 </div>
-                <div id="buttons">
-                    <button>Rules</button>
-                    <button>New Game</button>
-                </div>
+            </div>
+            <div id="buttons">
+                <button>Rules</button>
+                <button>New Game</button>
+            </div>
         </section>
         <section id="game-area">
             <div class="guess-row">
@@ -60,7 +62,7 @@
         </section>
         <aside>
             <div id="control-panel">
-                <div id="colour-controls">
+                <div id="colour-controls-aside">
                     <p>Colours</p>
                     <button>Red</button>
                     <button>Blue</button>
@@ -69,7 +71,7 @@
                     <button>White</button>
                     <button>Black</button>
                 </div>
-                <div id="other-controls">
+                <div id="other-controls-aside">
                     <p>Controls</p>
                     <button>Submit</button>
                     <button>Undo</button>
@@ -78,24 +80,25 @@
             </div>
         </aside>
         <footer>
-            <div id="colour-controls">
-                <p>Colours</p>
-                <button>Red</button>
-                <button>Blue</button>
-                <button>Green</button>
-                <button>Yellow</button>
-                <button>White</button>
-                <button>Black</button>
+            <div id="colour-controls-footer">
+                <button id="red"></button>
+                <button id="blue"></button>
+                <button id="green"></button>
+                <button id="yellow"></button>
+                <button id="white"></button>
+                <button id="black"></button>
             </div>
-            <div id="other-controls">
-                <p>Controls</p>
-                <button>Submit</button>
-                <button>Undo</button>
-                <button>Reset</button>
+            <div id="other-controls-footer">
+                <button><i class="fa-solid fa-check"></i></button>
+                <button><i class="fa-solid fa-delete-left"></i></button>
+                <button><i class="fa-solid fa-arrow-rotate-left"></i></button>
             </div>
         </footer>
     </main>
     <script src="assets/js/script.js"></script>
+    <!-- Font Awesome Script for Icons -->
+    <script src="https://kit.fontawesome.com/4bddeacc1b.js" crossorigin="anonymous"></script>
     <noscript>Your browser doesn't support JavaScript.</noscript>
 </body>
+
 </html>

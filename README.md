@@ -222,6 +222,7 @@ I generated the code to paste in the head of my HTML file here: https://realfavi
 
 ### Sources of Learning
 I learnt how to add flowcharts to my README with Mermaid here: https://mermaid.js.org/intro/ and https://mermaid.js.org/syntax/flowchart.html
+I learnt how to make a fixed footer here: https://www.w3schools.com/howto/howto_css_fixed_footer.asp
 
 ### General Credit
 I want to thank the open source community for the great resources that remind me of what I learnt in my Code Institute lessons, especially https://www.w3schools.com/ and https://developer.mozilla.org/en-US/

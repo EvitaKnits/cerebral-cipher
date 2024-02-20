@@ -7,8 +7,9 @@ body {
   background-color: #CDCDCD;
   font-family: 'Hind', sans-serif;
 }
+
 section,
-footer {
+aside {
   border: 2px solid #6D7F86;
   border-radius: 5px;
 }
@@ -90,6 +91,47 @@ h2 {
   font-size: 14px;
 }
 
+/*FOOTER*/
+
+/* I learnt how to make the footer fixed here: https://www.w3schools.com/howto/howto_css_fixed_footer.asp */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #b5bfc3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#colour-controls-footer,
+#other-controls-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0.5em;
+}
+
+#colour-controls-footer {
+  margin: 0.5em 0 0 0;
+}
+
+#colour-controls-footer button {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+}
+
+#other-controls-footer button {
+  height: 2em;
+  width: 4em;
+  font-size:x-large;
+  background-color: #CDCDCD;
+  border: 1px solid #6D7F86;
+  border-radius: 5px;
+}
+
 /* RULES MODAL */
 
 /* Media query for small devices (767px and down) as per W3 Schools Typical Device Breakpoints */
@@ -98,6 +140,7 @@ h2 {
   h1 {
     font-size: 8vw;
   }
+
   aside {
     display: none;
   }
@@ -127,7 +170,7 @@ h2 {
   img {
     width: auto;
     height: 5em;
-   
+
   }
 
 }

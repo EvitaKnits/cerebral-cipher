@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!--SEO Meta Content-->
     <meta name="description" content="A code-breaking logic game against the computer.">
     <meta name="keywords" content="game, logic, code-breaking">
@@ -28,46 +28,70 @@
 
 </head>
 <body>
-    <header id="game-title">
-        <h1>CEREBRAL CIPHER</h1>
-        <p>Can you crack the code?</p>
-    </header>
-    <section id="code-buttons"> 
-        <div>
-            <div id="code">
-                <h2>Choices Set</h2>
+    <main>
+        <header>
+            <img src="assets/images/brain.png" alt="Icon of a multi-coloured brain">
+            <div>
+                <h1>CEREBRAL CIPHER</h1>
+                <p>Can you crack the code?</p>
             </div>
-            <div id="buttons">
-                <button>Rules</button>
-                <button>New Game</button>
-                <button>About</button>
+        </header>
+        <section id="code-buttons">
+            <div>
+                <div id="code">
+                    <h2>Choices Set</h2>
+                </div>
+                <div id="buttons">
+                    <button>Rules</button>
+                    <button>New Game</button>
+                    <button>About</button>
+                </div>
             </div>
-        </div>
-    </section>
-    <section id="game-area">
-        <div class="guess-row">
-            <p>1</p>
-            <span id="colour-circles"></span>
-            <span id="feedback-circles"></span>
-        </div>
-    </section>
-    <footer>
-        <div id="colour-controls">
-            <p>Colours</p>
-            <button>Red</button>
-            <button>Blue</button>
-            <button>Green</button>
-            <button>Yellow</button>
-            <button>White</button>
-            <button>Black</button>
-        </div>
-        <div id="other-controls">
-            <p>Controls</p>
-            <button>Submit</button>
-            <button>Undo</button>
-            <button>Reset</button>
-        </div>
-    </footer>
+        </section>
+        <section id="game-area">
+            <div class="guess-row">
+                <p>1</p>
+                <span class="colour-circles"></span>
+                <span class="feedback-circles"></span>
+            </div>
+        </section>
+        <aside>
+            <div id="control-panel">
+                <div id="colour-controls">
+                    <p>Colours</p>
+                    <button>Red</button>
+                    <button>Blue</button>
+                    <button>Green</button>
+                    <button>Yellow</button>
+                    <button>White</button>
+                    <button>Black</button>
+                </div>
+                <div id="other-controls">
+                    <p>Controls</p>
+                    <button>Submit</button>
+                    <button>Undo</button>
+                    <button>Reset</button>
+                </div>
+            </div>
+        </aside>
+        <footer>
+            <div id="colour-controls">
+                <p>Colours</p>
+                <button>Red</button>
+                <button>Blue</button>
+                <button>Green</button>
+                <button>Yellow</button>
+                <button>White</button>
+                <button>Black</button>
+            </div>
+            <div id="other-controls">
+                <p>Controls</p>
+                <button>Submit</button>
+                <button>Undo</button>
+                <button>Reset</button>
+            </div>
+        </footer>
+    </main>
     <script src="assets/js/script.js"></script>
     <noscript>Your browser doesn't support JavaScript.</noscript>
 </body>

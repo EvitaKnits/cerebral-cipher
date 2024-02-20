@@ -7,6 +7,13 @@ body {
   background-color: #CDCDCD;
   font-family: 'Hind', sans-serif;
 }
+section,
+footer {
+  border: 2px solid #6D7F86;
+  border-radius: 5px;
+}
+
+/* HEADER */
 
 header {
   display: flex;
@@ -20,8 +27,7 @@ img {
 
 h1 {
   font-family: 'Expletus Sans', sans-serif;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0 0 0 0.25em;
   border-bottom: 2px solid #6D7F86;
 }
 
@@ -30,15 +36,61 @@ header p {
   text-align: center;
 }
 
-section,
-footer {
-  border: 2px solid #6D7F86;
+/* FIRST SECTION */
+
+#code-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+#code {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  padding: 0 0.5em 0 0.5em;
+  margin: 0.5em 0 0 0;
+  font-size: 28px;
+  color: #333333;
+  text-align: center;
+  font-weight: lighter;
+}
+
+#code div {
+  margin: 0 1em 1em 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#code span {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: #6D7F86;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1em 0 1em;
+}
+
+#buttons button {
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0.25em;
+  background-color: #b5bfc3;
+  border: 1px solid #6D7F86;
   border-radius: 5px;
+  font-family: 'Hind', sans-serif;
+  font-size: 14px;
 }
 
 /* RULES MODAL */
-
-/* ABOUT MODAL */
 
 /* Media query for small devices (767px and down) as per W3 Schools Typical Device Breakpoints */
 @media only screen and (max-width: 767px) {

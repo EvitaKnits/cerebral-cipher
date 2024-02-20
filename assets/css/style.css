@@ -132,32 +132,32 @@ footer {
   border-radius: 5px;
 }
 
-#red {
+.red {
   background-color: #9E5252;
   border: none;
 }
 
-#blue {
+.blue {
   background-color: #526C9E;
   border: none;
 }
 
-#green {
+.green {
   background-color: #5E9960;
   border: none;
 }
 
-#yellow {
+.yellow {
   background-color: #A79E52;
   border: none;
 }
 
-#white {
+.white {
   background-color: #E6E4DF;
   border: none;
 }
 
-#black {
+.black {
   background-color: #333333;
   border: none;
 }

@@ -1,8 +1,8 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-# Cerebral Cipher: a logic puzzle game played against the computer
+# Cerebral Cipher: a logic puzzle game
 
-'Cerebral Cipher' is a site that hosts a small logic puzzle game based on the popular physical boardgame 'Mastermind'. 
+'Cerebral Cipher' is a site that hosts a small logic puzzle game played against the computer, based on the popular physical boardgame 'Mastermind'. 
 
 ## REQUIREMENT GATHERING AND PLANNING
 
@@ -42,15 +42,29 @@ So that I can play the number of games I desire
 
 ### Flowchart
 
-Here is the flowchart I created to visualise the user journey and system interactions and data flow.
+Here is the flowchart I created to visualise the processes in the game and where the user inputs were:
+
+```mermaid
+flowchart TD
+    A[New Game Starts: code chosen] --> B[/User chooses colours of 4 circles/]
+    B --> C[/ User submits guess/]
+    C --> D{Guess \n correct?}
+    D --> |Yes| E[WIN]
+    D --> |No| F[Advance round number]
+    F --> G{10th \n round?}
+    G --> |Yes| H[LOSE]
+    H --> I[/User clicks new game/]
+    E --> I
+    I --> A
+    G --> |No| J[Provide feedback]
+    J --> B
+```
 
 ### Wireframes
 
-With my list of requirements, I created two wireframes.
+With my list of requirements, I created two wireframes. One for the mobile version and one for the tablet/desktop version. 
 
-One for the tablet/desktop version. 
-
-One for the mobile version. 
+![Wireframes](documentation/wireframes.png)
 
 ### Colour Palette
 
@@ -204,6 +218,7 @@ I got my icon from here: https://www.flaticon.com/free-icon/brain_3286097?term=b
 I generated the code to paste in the head of my HTML file here: https://realfavicongenerator.net/
 
 ### Sources of Learning
+I learnt how to add flowcharts to my README with Mermaid here: https://mermaid.js.org/intro/ and https://mermaid.js.org/syntax/flowchart.html
 
 ### General Credit
 I want to thank the open source community for the great resources that remind me of what I learnt in my Code Institute lessons, especially https://www.w3schools.com/ and https://developer.mozilla.org/en-US/

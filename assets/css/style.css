@@ -118,8 +118,8 @@ footer {
 }
 
 #colour-controls-footer button {
-  height: 2em;
-  width: 2em;
+  height: 3em;
+  width: 3em;
   border-radius: 50%;
 }
 
@@ -130,6 +130,36 @@ footer {
   background-color: #CDCDCD;
   border: 1px solid #6D7F86;
   border-radius: 5px;
+}
+
+#red {
+  background-color: #9E5252;
+  border: none;
+}
+
+#blue {
+  background-color: #526C9E;
+  border: none;
+}
+
+#green {
+  background-color: #5E9960;
+  border: none;
+}
+
+#yellow {
+  background-color: #A79E52;
+  border: none;
+}
+
+#white {
+  background-color: #E6E4DF;
+  border: none;
+}
+
+#black {
+  background-color: #333333;
+  border: none;
 }
 
 /* RULES MODAL */

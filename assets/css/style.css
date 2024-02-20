@@ -4,12 +4,38 @@
 /* GENERAL STYLES */
 
 body {
-    font-family: 'Hind', sans-serif;
+  background-color: #CDCDCD;
+  font-family: 'Hind', sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+img {
+  width: auto;
+  height: 18vw;
 }
 
 h1 {
-  font-family: 'Expletus Sans', sans-serif;  
+  font-family: 'Expletus Sans', sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid #6D7F86;
 }
+
+header p {
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+section,
+footer {
+  border: 2px solid #6D7F86;
+  border-radius: 5px;
+}
+
 /* RULES MODAL */
 
 /* ABOUT MODAL */
@@ -17,14 +43,47 @@ h1 {
 /* Media query for small devices (767px and down) as per W3 Schools Typical Device Breakpoints */
 @media only screen and (max-width: 767px) {
 
+  h1 {
+    font-size: 8vw;
+  }
+  aside {
+    display: none;
+  }
 }
 
 /* Media query for medium devices (768px and up) as per W3 Schools Typical Device Breakpoints */
 @media only screen and (min-width: 768px) {
+
+  body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #b5bfc3;
+  }
+
+  main {
+    width: 50vw;
+    background-color: #CDCDCD;
+    padding: 2em;
+    height: 92vh;
+  }
+
+  footer {
+    display: none;
+  }
+
+  img {
+    width: auto;
+    height: 5em;
+   
+  }
 
 }
 
 /* Media query for large devices (992px and up) as per W3 Schools Typical Device Breakpoints */
 @media only screen and (min-width: 992px) {
 
+  main {
+    width: 384px;
+  }
 }

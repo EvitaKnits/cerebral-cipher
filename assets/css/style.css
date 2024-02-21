@@ -280,11 +280,13 @@ footer {
     display: flex;
     flex-direction: row;
     border-top: 2px solid #9E5252;
+    justify-content: space-between;
   }
 
   aside {
-    border: 3px solid #6D7F86;
+    border: 2px solid #6D7F86;
     border-radius: 5px;
+    margin-top: 1em;
   }
 
   #colour-controls-aside,
@@ -307,6 +309,7 @@ footer {
 
   #game-area {
     border-top: none;
+    width: 73%;
   }
 
 }

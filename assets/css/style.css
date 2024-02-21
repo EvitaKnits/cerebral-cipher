@@ -8,12 +8,6 @@ body {
   font-family: 'Hind', sans-serif;
 }
 
-section,
-aside {
-  border: 3px solid #6D7F86;
-  border-radius: 5px;
-}
-
 /* HEADER */
 
 header {
@@ -44,6 +38,9 @@ header p {
   display: flex;
   flex-direction: row;
   margin-bottom: 1em;
+  border: 2px solid #6D7F86;
+  border-radius: 5px;
+  margin: 0.25em 0.25em 1em 0.25em;
 }
 
 #code {
@@ -98,6 +95,7 @@ h2 {
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  border-top: 2px solid #9E5252;
 }
 
 /* GUESS ROW */
@@ -106,7 +104,7 @@ h2 {
   display: flex;
   border: 2px solid #6D7F86;
   border-radius: 5px;
-  margin: 1em 1em 0 1em;
+  margin-top: 1em;
 }
 
 .round-number {
@@ -281,6 +279,12 @@ footer {
   #flex-container {
     display: flex;
     flex-direction: row;
+    border-top: 2px solid #9E5252;
+  }
+
+  aside {
+    border: 3px solid #6D7F86;
+    border-radius: 5px;
   }
 
   #colour-controls-aside,
@@ -289,6 +293,10 @@ footer {
     flex-direction: column;
     justify-content: space-evenly;
     width: 55px;
+  }
+
+  #game-area {
+    border-top: none;
   }
 
 }

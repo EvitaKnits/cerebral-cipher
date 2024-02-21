@@ -292,7 +292,17 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 55px;
+    align-items: center;
+    margin: 0.5em;
+  }
+
+  #colour-controls-aside button {
+    margin: 0.5em;
+  }
+
+  #other-controls-aside button {
+    width: 2em;
+    margin: 0.5em;
   }
 
   #game-area {

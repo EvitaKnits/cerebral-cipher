@@ -110,8 +110,9 @@ h2 {
 }
 
 .round-number {
-  width: 4em;
-  height: 2em;
+  min-width: 1em;
+  min-height: 0.5em;
+  flex-grow: 1;
   background-color: #b5bfc3;
   border: none;
   border-radius: 5px;
@@ -121,14 +122,19 @@ h2 {
 .colour-circles {
   display: flex;
   margin: 0.25em;
+  flex-grow: 2;
+  justify-content: space-evenly;
 }
 
 .colour-circles span {
-  width: 2em;
-  height: 2em;
+  min-width: 0.5em;
+  max-width: 2em;
+  min-height: 0.5em;
+  max-height: 2em;
+  flex-grow: 1;
   border-radius: 50%;
   background-color: #6D7F86;
-  margin: 0.25em 0.5em 0.25em 0.5em;
+  margin-top: 0.25em;
 }
 
 .feedback-circles {

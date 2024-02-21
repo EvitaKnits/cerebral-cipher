@@ -145,7 +145,7 @@ h2 {
   width: 0.75em;
   height: 0.75em;
   border-radius: 50%;
-  background-color:#b5bfc3;
+  background-color: #b5bfc3;
   margin: 0.25em;
 }
 
@@ -155,6 +155,7 @@ h2 {
   border-radius: 5px;
   margin: 0 1em 1em 1em;
 }
+
 /*FOOTER CONTROLS FOR MOBILE*/
 
 /* I learnt how to make the footer fixed here: https://www.w3schools.com/howto/howto_css_fixed_footer.asp */
@@ -181,13 +182,13 @@ footer {
   margin: 0.5em 0 0 0;
 }
 
-#colour-controls-footer button {
+.colour-controls button {
   height: 3em;
   width: 3em;
   border-radius: 50%;
 }
 
-#other-controls-footer button {
+.other-controls button {
   height: 2em;
   width: 4em;
   font-size: x-large;
@@ -238,11 +239,11 @@ footer {
   aside {
     display: none;
   }
-}
 
-/* This prevents overlap of the footer over the main game area */
-#game-area {
-  margin-bottom: 128px;
+  /* This prevents overlap of the footer over the main game area */
+  #game-area {
+    margin-bottom: 128px;
+  }
 }
 
 /* Media query for medium devices (768px and up) as per W3 Schools Typical Device Breakpoints */
@@ -274,16 +275,18 @@ footer {
 
   /*ASIDE CONTROLS FOR TABLET/COMPUTER */
 
-#flex-container {
-  display: flex;
-  flex-direction: row;
-}
+  #flex-container {
+    display: flex;
+    flex-direction: row;
+  }
 
-#colour-controls-aside, #other-controls-aside {
-  display: flex;
-  flex-direction: column;
-  width: 55px;
-}
+  #colour-controls-aside,
+  #other-controls-aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 55px;
+  }
 
 }
 

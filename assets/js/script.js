@@ -63,20 +63,28 @@ function resetRow() {
 }
 
 // Modal for rules box
-// Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp
+/* Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp but I changed their method 
+to use the functions and Event Listeners in the way I was taught at Code Institute */
 
+const rulesButton = document.getElementById("rules-button");
+const modal = document.getElementById("rules-modal");
 
-    let modal = document.getElementById("rulesModal");
-    let btn = document.getElementById("rulesButton");
-    let span = document.getElementsByClassName("closeModal") [0];
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-    span.onclick = function () {
-        modal.style.display = "none"
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+rulesButton.addEventListener("click", showRules);
+
+/**
+ * This function shows the Rules modal box.
+ */
+function showRules() {
+    modal.style.display = "block";
+}
+
+const closeButton = document.getElementsByClassName("close-modal")[0];
+
+closeButton.addEventListener("click", hideRules);
+
+/**
+ * This function hides the Rules modal box.
+ */
+function hideRules() {
+    modal.style.display = "none";
+}

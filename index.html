@@ -49,15 +49,35 @@
                 </div>
             </div>
             <div id="buttons">
-                <button id="rulesButton">Rules</button>
+                <button id="rules-button">Rules</button>
                 <!-- Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp -->
-                <div id="rulesModal" class="modal">
-                    <div class="rulesModalContent">
-                        <span class="closeModal">X</span>
-                        <p>Placeholder text</p>
+                <div id="rules-modal" class="modal">
+                    <div class="rules-modal-content">
+                        <span class="close-modal">x</span>
+                        <h1>The Rules</h1>
+                        <p><b>Objective:</b> figure out the 4 circle colour code that the computer has set in 10 rounds
+                            or fewer.
+                        </p>
+                        <p><b>Controls:</b> there are 6 colour buttons to choose your colours for each guess, a <i
+                                class="fa-solid fa-check"></i> button to lock in your guess, a <i
+                                class="fa-solid fa-delete-left"></i> button to change the colour of the last circle you set
+                            and a <i class="fa-solid fa-arrow-rotate-left"></i> to reset the whole row of circles to choose
+                            all new colours for them. </p>
+                        <p><b>How to play:</b> use the controls to enter your guess for this round and submit it. You
+                            will receive feedback on your guess on the right hand side of the row in the feedback
+                            section.</p>
+                        <p><b>Feedback:</b></p>
+                        <ul>
+                            <li>Red circle - a correct colour in the correct location</li>
+                            <li>White circle - a correct colour NOT in the correct location</li>
+                            <li>Grey circle - an incorrect colour</li>
+                        </ul>
+                        <p>You will get feedback for each of your circles but the order of the feedback circles does not
+                            indicate which circle the feedback relates to.</p>
+                        <p><b>How to win:</b> crack the code before the ten rounds are up!</p>
                     </div>
                 </div>
-                <button id="newGameButton">New Game</button>
+                <button id="new-game-button">New Game</button>
             </div>
         </section>
         <div id="flex-container">

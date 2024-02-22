@@ -246,7 +246,7 @@ footer {
 }
 
 /* The box */
-.rulesModalContent {
+.rules-modal-content {
   background-color:#CDCDCD;
   margin: 15% auto;
   padding: 20px;
@@ -255,14 +255,14 @@ footer {
 }
 
 /* The close button */
-.closeModal {
+.close-modal {
   color: #6D7F86;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.closeModal:hover, .closeModal:focus {
+.close-modal:hover, .close-modal:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

@@ -225,6 +225,7 @@ I learnt how to add flowcharts to my README with Mermaid here: https://mermaid.j
 I learnt how to make a fixed footer here: https://www.w3schools.com/howto/howto_css_fixed_footer.asp
 I learnt how to desaturate an image with CSS here: https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/saturate
 I learnt/reminded myself about how to use last-child here: https://developer.mozilla.org/en-US/docs/Web/CSS/:last-child
+I learnt how to make a modal box here: https://www.w3schools.com/howto/howto_css_modals.asp
 
 
 ### General Credit

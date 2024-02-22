@@ -62,30 +62,21 @@ function resetRow() {
 
 }
 
-/**
- * This function shows the Rules modal box.
- */
-function showRules() {
+// Modal for rules box
+// Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp
 
-}
 
-/**
- * This function shows the About modal box. 
- */
-function showAbout() {
-
-}
-
-/**
- * This function hides the Rules modal box.
- */
-function hideRules() {
-
-}
-
-/**
- * This function hides the About modal box. 
- */
-function hideAbout() {
-
-}
+    let modal = document.getElementById("rulesModal");
+    let btn = document.getElementById("rulesButton");
+    let span = document.getElementsByClassName("closeModal") [0];
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    span.onclick = function () {
+        modal.style.display = "none"
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }

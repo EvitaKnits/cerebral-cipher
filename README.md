@@ -226,6 +226,9 @@ I learnt how to make a fixed footer here: https://www.w3schools.com/howto/howto_
 I learnt how to desaturate an image with CSS here: https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/saturate
 I learnt/reminded myself about how to use last-child here: https://developer.mozilla.org/en-US/docs/Web/CSS/:last-child
 I learnt how to make a modal box here: https://www.w3schools.com/howto/howto_css_modals.asp
+I learnt how to get a number between 1 and 6 here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
+I learnt how to refresh the page when you click a button here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ 
+
 
 
 ### General Credit

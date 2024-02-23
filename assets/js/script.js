@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 }) // PUT CREATION OF FIRST GUESS ROW IN HERE. Take it out of the html and inject the first row in here to start playing the game. 
 
-const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
-
 /* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
 how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
 
@@ -36,8 +34,16 @@ function gameSetup() {
         }
         return currentGame;
     }
-    return setFourNumbers();
-} //MAKE THE OUTPUT OF THIS FUNCTION BE THE ARRAY OF COLOURS
+    const game = setFourNumbers();
+    const colours = ["red", "blue", "green", "yellow", "white", "black"];
+    const currentGameColours = [];
+    for (let i = 0; i < game.length; i++) {
+        const gameNumber = game[i];
+        const gameColour = colours[gameNumber]
+        currentGameColours.push(gameColour) 
+    }
+    return currentGameColours;
+} 
 
 /**
  * This function submits the user's input and locks it in, preventing further changes.

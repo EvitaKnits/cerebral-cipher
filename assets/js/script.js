@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 }) // PUT CREATION OF FIRST GUESS ROW IN HERE. Take it out of the html and inject the first row in here to start playing the game. 
 
+const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
+
 /* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
 how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
 
@@ -35,15 +37,55 @@ function gameSetup() {
         return currentGame;
     }
     const game = setFourNumbers();
-    const colours = ["red", "blue", "green", "yellow", "white", "black"];
     const currentGameColours = [];
     for (let i = 0; i < game.length; i++) {
         const gameNumber = game[i];
-        const gameColour = colours[gameNumber]
+        const gameColour = COLOURS[gameNumber]
         currentGameColours.push(gameColour) 
     }
     return currentGameColours;
 } 
+
+// This event listener listens for the clicking of a colour in the control panel and invokes the colourAssignment function.
+
+const colourClick = document.getElementsByClassName("colour-control");
+colourClick.addEventListener("click", colourAssignment);
+
+/**
+ * This function takes the colour the user clicked on in the control panel and assigns it to the next available grey circle in the current guess row.
+ */
+function colourAssignment () {
+
+}
+
+//This event listener listens for the clicking of the undo button in the control panel and invokes the undoChoice function. 
+
+const undoClick = document.getElementsByClassName("undo-control");
+undoClick.addEventListener("click", undoChoice);
+
+/**
+ * This function allows the user to remove the colour of the latest choice in the input row. 
+ */
+function undoChoice() {
+
+}
+
+//This event listener listens for the clicking of the reset button in the control panel and invokes the resetRow function. 
+
+const resetClick = document.getElementsByClassName("reset-control");
+resetClick.addEventListener("click", resetRow);
+
+/**
+ * This function allows the user to remove the colours in the whole input row, however many have been entered so far. 
+ */
+function resetRow() {
+
+}
+
+//This event listener listens for the clicking of the submit button in the control panel and invokes the userSubmission function.
+
+const submitClick = document.getElementsByClassName("submit-control");
+submitClick.addEventListener("click", userSubmission);
 
 /**
  * This function submits the user's input and locks it in, preventing further changes.
@@ -81,20 +123,6 @@ function advanceRound() {
  * correct end game message, according to whether they won or lost and if they lost, depending on how many they got correct.
  */
 function endOrContinue() {
-
-}
-
-/**
- * This function allows the user to remove the colour of the latest choice in the input row. 
- */
-function undoChoice() {
-
-}
-
-/**
- * This function allows the user to remove the colours in the whole input row, however many have been entered so far. 
- */
-function resetRow() {
 
 }
 

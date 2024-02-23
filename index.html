@@ -42,10 +42,10 @@
             <div id="code">
                 <h2>Code Set</h2>
                 <div>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span id="codeOne"></span>
+                    <span id="codeTwo"></span>
+                    <span id="codeThree"></span>
+                    <span id="codeFour"></span>
                 </div>
             </div>
             <div id="buttons">
@@ -60,8 +60,10 @@
                         </p>
                         <p><b>Controls:</b> there are 6 colour buttons to choose your colours for each guess, a <i
                                 class="fa-solid fa-check"></i> button to lock in your guess, a <i
-                                class="fa-solid fa-delete-left"></i> button to change the colour of the last circle you set
-                            and a <i class="fa-solid fa-arrow-rotate-left"></i> to reset the whole row of circles to choose
+                                class="fa-solid fa-delete-left"></i> button to change the colour of the last circle you
+                            set
+                            and a <i class="fa-solid fa-arrow-rotate-left"></i> to reset the whole row of circles to
+                            choose
                             all new colours for them. </p>
                         <p><b>How to play:</b> use the controls to enter your guess for this round and submit it. You
                             will receive feedback on your guess on the right hand side of the row in the feedback
@@ -85,19 +87,19 @@
                 <div class="guess-row">
                     <div class="round-number"></div>
                     <div class="colour-circles">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span class="circleOne"></span>
+                        <span class="circleTwo"></span>
+                        <span class="circleThree"></span>
+                        <span class="circleFour"></span>
                     </div>
                     <div class="feedback-circles">
                         <div class="feedback-row">
-                            <span></span>
-                            <span></span>
+                            <span class="feedbackOne"></span>
+                            <span class="feedbackTwo"></span>
                         </div>
                         <div class="feedback-row">
-                            <span></span>
-                            <span></span>
+                            <span class="feedbackThree"></span>
+                            <span class="feedbackFour"></span>
                         </div>
                     </div>
                 </div>
@@ -180,34 +182,34 @@
             </section>
             <aside>
                 <div id="colour-controls-aside" class="colour-controls">
-                    <button class="red"></button>
-                    <button class="blue"></button>
-                    <button class="green"></button>
-                    <button class="yellow"></button>
-                    <button class="white"></button>
-                    <button class="black"></button>
+                    <button class="red" class="red-control" class="colour-control"></button>
+                    <button class="blue" class="blue-control" class="colour-control"></button>
+                    <button class="green" class="green-control" class="colour-control"></button>
+                    <button class="yellow" class="yellow-control" class="colour-control"></button>
+                    <button class="white" class="white-control" class="colour-control"></button>
+                    <button class="black" class="black-control" class="colour-control"></button>
                 </div>
                 <div id="other-controls-aside" class="other-controls">
-                    <button><i class="fa-solid fa-check"></i></button>
-                    <button><i class="fa-solid fa-delete-left"></i></button>
-                    <button><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                    <button class="submit-control"><i class="fa-solid fa-check"></i></button>
+                    <button class="undo-control"><i class="fa-solid fa-delete-left"></i></button>
+                    <button class="reset-control"><i class="fa-solid fa-arrow-rotate-left"></i></button>
                 </div>
 
             </aside>
         </div>
         <footer>
             <div id="colour-controls-footer" class="colour-controls">
-                <button class="red"></button>
-                <button class="blue"></button>
-                <button class="green"></button>
-                <button class="yellow"></button>
-                <button class="white"></button>
-                <button class="black"></button>
+                <button class="red" class="red-control" class="colour-control"></button>
+                <button class="blue" class="blue-control" class="colour-control"></button>
+                <button class="green" class="green-control" class="colour-control"></button>
+                <button class="yellow" class="yellow-control" class="colour-control"></button>
+                <button class="white" class="white-control" class="colour-control"></button>
+                <button class="black" class="black-control" class="colour-control"></button>
             </div>
             <div id="other-controls-footer" class="other-controls">
-                <button><i class="fa-solid fa-check"></i></button>
-                <button><i class="fa-solid fa-delete-left"></i></button>
-                <button><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                <button class="submit-control"><i class="fa-solid fa-check"></i></button>
+                <button class="undo-control"><i class="fa-solid fa-delete-left"></i></button>
+                <button class="reset-control"><i class="fa-solid fa-arrow-rotate-left"></i></button>
             </div>
         </footer>
     </main>

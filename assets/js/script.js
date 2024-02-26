@@ -113,14 +113,16 @@ function undoChoice(event) {
 
 //This event listener listens for the clicking of the reset button in the control panel and invokes the resetRow function. 
 
-const resetClick = document.getElementsByClassName("reset-control");
-resetClick.addEventListener("click", resetRow);
-
+document.addEventListener("click", resetRow);
 /**
  * This function allows the user to remove the colours in the whole input row, however many have been entered so far. 
  */
-function resetRow() {
-
+function resetRow(event) {
+    if (event.target.classList.contains("reset-control")) {
+        //empty the current colours array and style current guess row again
+        GUESSROW.circles = [];
+        styleCurrentGuessRow();
+}
 }
 
 //This event listener listens for the clicking of the submit button in the control panel and invokes the userSubmission function.

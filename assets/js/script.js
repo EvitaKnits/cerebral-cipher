@@ -98,14 +98,17 @@ function styleCurrentGuessRow() {
 
 //This event listener listens for the clicking of the undo button in the control panel and invokes the undoChoice function. 
 
-const undoClick = document.getElementsByClassName("undo-control");
-undoClick[0].addEventListener("click", undoChoice);
+document.addEventListener("click", undoChoice);
 
 /**
  * This function allows the user to remove the colour of the latest choice in the input row. 
  */
-function undoChoice() {
-    //remove last value of the circles array and style current guess row again
+function undoChoice(event) {
+    if (event.target.classList.contains("undo-control")) {
+        //remove last value of the circles array and style current guess row again
+        GUESSROW.circles.pop();
+        styleCurrentGuessRow();
+    }
 }
 
 //This event listener listens for the clicking of the reset button in the control panel and invokes the resetRow function. 

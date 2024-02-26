@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
+const GUESSROW = {
+    currentRound: 0,
+    circles: [],
+    feedback: []
+};
+
 /* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
 how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
 
@@ -56,39 +62,50 @@ document.addEventListener("click", colourAssignment);
  * which is subsequently styled by the styleCurrentGuessRow function. 
  */
 function colourAssignment(event) {
-    if (event.target.classList.contains("red-control")) {
-        
-    } else if (event.target.classList.contains("blue-control") ) {
-
-    } else if (event.target.classList.contains("green-control") ) {
-
-    } else if (event.target.classList.contains("yellow-control") ) {
-
-    } else if (event.target.classList.contains("white-control") ) {
-
-    } else if (event.target.classList.contains("black-control") ) {
-
-    }   
-  }
-
-
+    if (GUESSROW.circles.length < 4) {
+        if (event.target.classList.contains("red-control")) {
+            GUESSROW.circles.push("red");
+        } else if (event.target.classList.contains("blue-control")) {
+            GUESSROW.circles.push("blue");
+        } else if (event.target.classList.contains("green-control")) {
+            GUESSROW.circles.push("green");
+        } else if (event.target.classList.contains("yellow-control")) {
+            GUESSROW.circles.push("yellow");
+        } else if (event.target.classList.contains("white-control")) {
+            GUESSROW.circles.push("white");
+        } else if (event.target.classList.contains("black-control")) {
+            GUESSROW.circles.push("black");
+        }
+        styleCurrentGuessRow();
+    }
+}
 /**
- * This function styles the current guess row based on the values assigned in the GUESSROW object.
- */  
+ * This function styles the current guess row based on the values assigned in the GUESSROW object's circles array.
+ */
 function styleCurrentGuessRow() {
-    
+    const topRow = document.getElementsByClassName("guess-row")[0];
+    const guessCircles = topRow.getElementsByClassName("circle");
+
+    // if i is less than length of circles then use circles value otherwise grey 
+    for (let i = 0; i < 4; i++) {
+        if (i < GUESSROW.circles.length) {
+            guessCircles[i].classList.replace(guessCircles[i].classList[1], GUESSROW.circles[i]);
+        } else {
+            guessCircles[i].classList.replace(guessCircles[i].classList[1], "grey");
+        }
+    }
 }
 
 //This event listener listens for the clicking of the undo button in the control panel and invokes the undoChoice function. 
 
 const undoClick = document.getElementsByClassName("undo-control");
-undoClick.addEventListener("click", undoChoice);
+undoClick[0].addEventListener("click", undoChoice);
 
 /**
  * This function allows the user to remove the colour of the latest choice in the input row. 
  */
 function undoChoice() {
-
+    //remove last value of the circles array and style current guess row again
 }
 
 //This event listener listens for the clicking of the reset button in the control panel and invokes the resetRow function. 

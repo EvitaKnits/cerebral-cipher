@@ -131,7 +131,6 @@ h2 {
   max-height: 2em;
   flex-grow: 1;
   border-radius: 50%;
-  background-color: #6D7F86;
   margin-top: 0.25em;
 }
 
@@ -225,6 +224,11 @@ footer {
 
 .black {
   background-color: #333333;
+  border: none;
+}
+
+.grey {
+  background-color: #6D7F86;
   border: none;
 }
 

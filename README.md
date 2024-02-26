@@ -214,8 +214,6 @@ The live link can be found here:
 I used this rulebook for the original Mastermind game: https://www.pressmantoy.com/wp-content/uploads/2018/07/3018K10_v1_0218_Mastermind_IM.pdf
 I used this website to lighten #6D7F86 from my colour scheme to use as my background colour on the largest screen size: https://mdigi.tools/lighten-color/#6d7f86
 
-### Media
-
 **Favicon**
 I got my icon from here: https://www.flaticon.com/free-icon/brain_3286097?term=brain&page=1&position=22&origin=search&related_id=3286097
 I generated the code to paste in the head of my HTML file here: https://realfavicongenerator.net/
@@ -229,8 +227,8 @@ I learnt how to make a modal box here: https://www.w3schools.com/howto/howto_css
 I learnt how to get a number between 1 and 6 here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
 I learnt how to refresh the page when you click a button here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ 
 I learnt how to use event delegation here: https://byby.dev/js-add-event-listener
-
-
+I learnt how to disable buttons with JavaScript here: https://www.altcademy.com/blog/how-to-disable-a-button-in-javascript/
+I learnt about pointer events via tutoring and this link: https://www.w3schools.com/csSref/css3_pr_pointer-events.php 
 
 ### General Credit
 I want to thank the open source community for the great resources that remind me of what I learnt in my Code Institute lessons, especially https://www.w3schools.com/ and https://developer.mozilla.org/en-US/

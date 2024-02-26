@@ -89,6 +89,11 @@ h2 {
   font-size: 14px;
 }
 
+/*This selector prevents the Font Awesome icons from blocking the clicking action of my buttons */
+.fa-solid {
+  pointer-events: none;
+}
+
 /* GAME AREA */
 
 #game-area {

@@ -122,76 +122,92 @@ function resetRow(event) {
         //empty the current colours array and style current guess row again
         GUESSROW.circles = [];
         styleCurrentGuessRow();
-}
+    }
 }
 
 //This event listener listens for the clicking of the submit button in the control panel and invokes the userSubmission function.
 
-const submitClick = document.getElementsByClassName("submit-control");
-submitClick.addEventListener("click", userSubmission);
+document.addEventListener("click", userSubmission);
 
 /**
- * This function submits the user's input and locks it in, preventing further changes.
+ * This function prevents further changes to the user's input then invokes the checkUserSubmission function to check the answer
+ * against the code that was set in gameSetup. It then invokes the provideFeedback function followed by the advanceRound function.
  */
-function userSubmission() {
-
+function userSubmission(event) {
+    if (event.target.classList.contains("submit-control")) {
+    const undoButton = document.getElementsByClassName("undo-control");
+    const resetButton = document.getElementsByClassName("reset-control");
+    for (i = 0; i < undoButton.length; i++) {
+        if (GUESSROW.circles.length === 4) {
+            undoButton[i].disabled = true;
+            resetButton[i].disabled = true;
+        }
+    }
 }
-
-/**
- * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game in the gameSetup function. 
- * It provides the result of how many of the guesses were a) correct colour and in the correct place, b) correct colour in the incorrect place and c) not a
- * correct colour.
- */
-function checkUserSubmission() {
-
 }
+        // checkUserSubmission();
+        // provideFeedback();
+        // advanceRound();
 
-/**
- * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and null pegs should be presented for 
- * that row of guesses in the feedback section of the game. 
- */
-function provideFeedback() {
 
-}
+    /**
+     * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game in the gameSetup function. 
+     * It provides the result of how many of the guesses were a) correct colour and in the correct place, b) correct colour in the incorrect place and c) not a
+     * correct colour.
+     */
+    function checkUserSubmission() {
 
-/**
- * This function advances the round counter by one and provides a new row for guesses, pushing the previous row down the page.
- */
-function advanceRound() {
+    }
 
-}
+    /**
+     * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and null pegs should be presented for 
+     * that row of guesses in the feedback section of the game. 
+     */
+    function provideFeedback() {
 
-/**
- * This function checks the round counter and if it is <10, it calls the advanceRound function to set up for a new round. Otherwise it ends the game with the
- * correct end game message, according to whether they won or lost and if they lost, depending on how many they got correct.
- */
-function endOrContinue() {
+    }
 
-}
+    /**
+     * This function advances the round counter by one and provides a new row for guesses, pushing the previous row down the page.
+     */
+    function advanceRound() {
+        /*don't forget to re-enable the undo and reset buttons here when a new row is available
+ 
+          undoButton.disabled = false;
+            resetButton.disabled = false;*/
+    }
 
-// Modal for rules box
-/* Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp but I changed their method 
-to use the functions and Event Listeners in the way I was taught at Code Institute */
+    /**
+     * This function checks the round counter and if it is <10, it calls the advanceRound function to set up for a new round. Otherwise it ends the game with the
+     * correct end game message, according to whether they won or lost and if they lost, depending on how many they got correct.
+     */
+    function endOrContinue() {
 
-const rulesButton = document.getElementById("rules-button");
-const modal = document.getElementById("rules-modal");
+    }
 
-rulesButton.addEventListener("click", showRules);
+    // Modal for rules box
+    /* Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp but I changed their method 
+    to use the functions and Event Listeners in the way I was taught at Code Institute */
 
-/**
- * This function shows the Rules modal box.
- */
-function showRules() {
-    modal.style.display = "block";
-}
+    const rulesButton = document.getElementById("rules-button");
+    const modal = document.getElementById("rules-modal");
 
-const closeButton = document.getElementsByClassName("close-modal")[0];
+    rulesButton.addEventListener("click", showRules);
 
-closeButton.addEventListener("click", hideRules);
+    /**
+     * This function shows the Rules modal box.
+     */
+    function showRules() {
+        modal.style.display = "block";
+    }
 
-/**
- * This function hides the Rules modal box.
- */
-function hideRules() {
-    modal.style.display = "none";
-}
+    const closeButton = document.getElementsByClassName("close-modal")[0];
+
+    closeButton.addEventListener("click", hideRules);
+
+    /**
+     * This function hides the Rules modal box.
+     */
+    function hideRules() {
+        modal.style.display = "none";
+    }

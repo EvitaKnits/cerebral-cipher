@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-}) // PUT CREATION OF FIRST GUESS ROW IN HERE. Take it out of the html and inject the first row in here to start playing the game. 
+    gameSetup();
+})
 
 const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
 /* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
 how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
 
-const newGame = document.getElementById("new-game-button"); 
+const newGame = document.getElementById("new-game-button");
 newGame.addEventListener("click", createNewGame);
 
 /**
@@ -41,21 +41,42 @@ function gameSetup() {
     for (let i = 0; i < game.length; i++) {
         const gameNumber = game[i];
         const gameColour = COLOURS[gameNumber]
-        currentGameColours.push(gameColour) 
+        currentGameColours.push(gameColour)
     }
     return currentGameColours;
-} 
+}
 
-// This event listener listens for the clicking of a colour in the control panel and invokes the colourAssignment function.
+/* This event listener listens for the clicking of any element and invokes the colourAssignment function which only does something
+if the element clicked is a circle in the control panel, and changes the colour of the current guess row circle to the correct colour. */
 
-const colourClick = document.getElementsByClassName("colour-control");
-colourClick.addEventListener("click", colourAssignment);
+document.addEventListener("click", colourAssignment);
 
 /**
- * This function takes the colour the user clicked on in the control panel and assigns it to the next available grey circle in the current guess row.
+ * This function takes the colour the user clicked on in the control panel and assigns it to the current guess row object, 
+ * which is subsequently styled by the styleCurrentGuessRow function. 
  */
-function colourAssignment () {
+function colourAssignment(event) {
+    if (event.target.classList.contains("red-control")) {
+        
+    } else if (event.target.classList.contains("blue-control") ) {
 
+    } else if (event.target.classList.contains("green-control") ) {
+
+    } else if (event.target.classList.contains("yellow-control") ) {
+
+    } else if (event.target.classList.contains("white-control") ) {
+
+    } else if (event.target.classList.contains("black-control") ) {
+
+    }   
+  }
+
+
+/**
+ * This function styles the current guess row based on the values assigned in the GUESSROW object.
+ */  
+function styleCurrentGuessRow() {
+    
 }
 
 //This event listener listens for the clicking of the undo button in the control panel and invokes the undoChoice function. 

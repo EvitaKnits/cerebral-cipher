@@ -228,6 +228,7 @@ I learnt/reminded myself about how to use last-child here: https://developer.moz
 I learnt how to make a modal box here: https://www.w3schools.com/howto/howto_css_modals.asp
 I learnt how to get a number between 1 and 6 here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
 I learnt how to refresh the page when you click a button here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ 
+I learnt how to use event delegation here: https://byby.dev/js-add-event-listener
 
 
 

@@ -153,7 +153,6 @@ h2 {
   width: 0.75em;
   height: 0.75em;
   border-radius: 50%;
-  background-color: #b5bfc3;
   margin: 0.25em;
 }
 
@@ -234,6 +233,11 @@ footer {
 
 .grey {
   background-color: #6D7F86;
+  border: none;
+}
+
+.light-grey {
+  background-color: #b5bfc3;
   border: none;
 }
 

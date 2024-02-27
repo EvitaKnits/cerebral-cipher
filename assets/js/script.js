@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
+const CURRENTGAMECOLOURS = [];
+
 const GUESSROW = {
     currentRound: 0,
     circles: [],
@@ -33,7 +35,6 @@ function gameSetup() {
         const maxFloored = Math.floor(max);
         return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
     }
-
     //get four random numbers between 0 and 5
     function setFourNumbers() {
         const currentGame = [];
@@ -43,13 +44,11 @@ function gameSetup() {
         return currentGame;
     }
     const game = setFourNumbers();
-    const currentGameColours = [];
     for (let i = 0; i < game.length; i++) {
         const gameNumber = game[i];
         const gameColour = COLOURS[gameNumber]
-        currentGameColours.push(gameColour)
+        CURRENTGAMECOLOURS.push(gameColour)
     }
-    return currentGameColours;
 }
 
 /* This event listener listens for the clicking of any element and invokes the colourAssignment function which only does something
@@ -135,79 +134,100 @@ document.addEventListener("click", userSubmission);
  */
 function userSubmission(event) {
     if (event.target.classList.contains("submit-control")) {
-    const undoButton = document.getElementsByClassName("undo-control");
-    const resetButton = document.getElementsByClassName("reset-control");
-    for (i = 0; i < undoButton.length; i++) {
-        if (GUESSROW.circles.length === 4) {
-            undoButton[i].disabled = true;
-            resetButton[i].disabled = true;
+        const undoButton = document.getElementsByClassName("undo-control");
+        const resetButton = document.getElementsByClassName("reset-control");
+        for (i = 0; i < undoButton.length; i++) {
+            if (GUESSROW.circles.length === 4) {
+                undoButton[i].disabled = true;
+                resetButton[i].disabled = true;
+            }
+        }
+        checkUserSubmission();
+        provideFeedback();
+    }
+
+}
+// advanceRound();
+
+
+/**
+ * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game in the gameSetup function. 
+ * It provides the result of how many of the guesses were a) correct colour and in the correct place (red), b) correct colour in the incorrect place (white) and c) not a
+ * correct colour (light-grey).
+ */
+function checkUserSubmission() {
+    GUESSROW.feedback = [];
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
+            GUESSROW.feedback.push("red");
+        } else if (CURRENTGAMECOLOURS.includes(GUESSROW.circles[i],[0])) {
+            GUESSROW.feedback.push("white");
+        } else {
+            GUESSROW.feedback.push("light-grey");
         }
     }
 }
+
+/**
+ * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and light-grey(default colour) pegs should be presented for 
+ * that row of guesses in the feedback section of the game. 
+ */
+function provideFeedback() {
+    const topRow = document.getElementsByClassName("guess-row")[0];
+    const feedbackCircles = topRow.getElementsByClassName("feedback");
+
+    // if i is less than length of circles then use circles value otherwise light-grey 
+    for (let i = 0; i < 4; i++) {
+        if (i < GUESSROW.feedback.length) {
+            feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], GUESSROW.feedback[i]);
+        } else {
+            feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], "light-grey");
+        }
+    }
 }
-        // checkUserSubmission();
-        // provideFeedback();
-        // advanceRound();
 
 
-    /**
-     * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game in the gameSetup function. 
-     * It provides the result of how many of the guesses were a) correct colour and in the correct place, b) correct colour in the incorrect place and c) not a
-     * correct colour.
-     */
-    function checkUserSubmission() {
-
-    }
-
-    /**
-     * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and null pegs should be presented for 
-     * that row of guesses in the feedback section of the game. 
-     */
-    function provideFeedback() {
-
-    }
-
-    /**
-     * This function advances the round counter by one and provides a new row for guesses, pushing the previous row down the page.
-     */
-    function advanceRound() {
-        /*don't forget to re-enable the undo and reset buttons here when a new row is available
+/**
+ * This function advances the round counter by one and provides a new row for guesses, pushing the previous row down the page.
+ */
+function advanceRound() {
+    /*don't forget to re-enable the undo and reset buttons here when a new row is available
  
           undoButton.disabled = false;
             resetButton.disabled = false;*/
-    }
+}
 
-    /**
-     * This function checks the round counter and if it is <10, it calls the advanceRound function to set up for a new round. Otherwise it ends the game with the
-     * correct end game message, according to whether they won or lost and if they lost, depending on how many they got correct.
-     */
-    function endOrContinue() {
+/**
+ * This function checks the round counter and if it is <10, it calls the advanceRound function to set up for a new round. Otherwise it ends the game with the
+ * correct end game message, according to whether they won or lost and if they lost, depending on how many they got correct.
+ */
+function endOrContinue() {
 
-    }
+}
 
-    // Modal for rules box
-    /* Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp but I changed their method 
-    to use the functions and Event Listeners in the way I was taught at Code Institute */
+// Modal for rules box
+/* Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp but I changed their method 
+to use the functions and Event Listeners in the way I was taught at Code Institute */
 
-    const rulesButton = document.getElementById("rules-button");
-    const modal = document.getElementById("rules-modal");
+const rulesButton = document.getElementById("rules-button");
+const modal = document.getElementById("rules-modal");
 
-    rulesButton.addEventListener("click", showRules);
+rulesButton.addEventListener("click", showRules);
 
-    /**
-     * This function shows the Rules modal box.
-     */
-    function showRules() {
-        modal.style.display = "block";
-    }
+/**
+ * This function shows the Rules modal box.
+ */
+function showRules() {
+    modal.style.display = "block";
+}
 
-    const closeButton = document.getElementsByClassName("close-modal")[0];
+const closeButton = document.getElementsByClassName("close-modal")[0];
 
-    closeButton.addEventListener("click", hideRules);
+closeButton.addEventListener("click", hideRules);
 
-    /**
-     * This function hides the Rules modal box.
-     */
-    function hideRules() {
-        modal.style.display = "none";
-    }
+/**
+ * This function hides the Rules modal box.
+ */
+function hideRules() {
+    modal.style.display = "none";
+}

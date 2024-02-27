@@ -7,10 +7,13 @@ const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 const CURRENTGAMECOLOURS = [];
 
 const GUESSROW = {
-    currentRound: 0,
+    currentRound: 1,
     circles: [],
     feedback: []
 };
+
+const UNDOBUTTON = document.getElementsByClassName("undo-control");
+const RESETBUTTON = document.getElementsByClassName("reset-control");
 
 /* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
 how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
@@ -134,21 +137,18 @@ document.addEventListener("click", userSubmission);
  */
 function userSubmission(event) {
     if (event.target.classList.contains("submit-control")) {
-        const undoButton = document.getElementsByClassName("undo-control");
-        const resetButton = document.getElementsByClassName("reset-control");
-        for (i = 0; i < undoButton.length; i++) {
+        for (i = 0; i < UNDOBUTTON.length; i++) {
             if (GUESSROW.circles.length === 4) {
-                undoButton[i].disabled = true;
-                resetButton[i].disabled = true;
+                UNDOBUTTON[i].disabled = true;
+                RESETBUTTON[i].disabled = true;
             }
         }
         checkUserSubmission();
         provideFeedback();
+        advanceRound();
     }
 
 }
-// advanceRound();
-
 
 /**
  * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game in the gameSetup function. 
@@ -180,7 +180,7 @@ function provideFeedback() {
         GUESSROW.feedback[i] = GUESSROW.feedback[j];
         GUESSROW.feedback[j] = k;
     }
-    
+
     const topRow = document.getElementsByClassName("guess-row")[0];
     const feedbackCircles = topRow.getElementsByClassName("feedback");
 
@@ -194,24 +194,47 @@ function provideFeedback() {
     }
 }
 
-
-
 /**
- * This function advances the round counter by one and provides a new row for guesses, pushing the previous row down the page.
+ * This function advances the round counter by one, enables the undo and reset buttons and provides a new 
+ * row for guesses, pushing the previous row down the page.
  */
 function advanceRound() {
-    /*don't forget to re-enable the undo and reset buttons here when a new row is available
- 
-          undoButton.disabled = false;
-            resetButton.disabled = false;*/
+    GUESSROW.currentRound++;
+    if (GUESSROW.currentRound <11) {
+
+    for (i = 0; i < UNDOBUTTON.length; i++) {
+        if (GUESSROW.circles.length === 4) {
+            UNDOBUTTON[i].disabled = false;
+            RESETBUTTON[i].disabled = false;
+        }
+    }
+
+    const rowContainer = document.getElementById("game-area");
+    rowContainer.innerHTML = `
+    <div class="guess-row">
+        <div class="round-number"><b></b></div>
+        <div class="colour-circles">
+            <span class="circle grey"></span>
+            <span class="circle grey"></span>
+            <span class="circle grey"></span>
+            <span class="circle grey"></span>
+        </div>
+        <div class="feedback-circles">
+            <div class="feedback-row">
+                <span class="feedback light-grey"></span>
+                <span class="feedback light-grey"></span>
+            </div>
+            <div class="feedback-row">
+                <span class="feedback light-grey"></span>
+                <span class="feedback light-grey"></span>
+            </div>
+        </div>
+    </div> ` + rowContainer.innerHTML;
+
+    const round = document.getElementsByClassName("round-number")[0];
+    round.innerHTML = [GUESSROW.currentRound];
+    GUESSROW.circles = [];
 }
-
-/**
- * This function checks the round counter and if it is <10, it calls the advanceRound function to set up for a new round. Otherwise it ends the game with the
- * correct end game message, according to whether they won or lost and if they lost, depending on how many they got correct.
- */
-function endOrContinue() {
-
 }
 
 // Modal for rules box

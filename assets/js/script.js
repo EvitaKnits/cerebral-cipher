@@ -160,7 +160,7 @@ function checkUserSubmission() {
     for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
         if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
             GUESSROW.feedback.push("red");
-        } else if (CURRENTGAMECOLOURS.includes(GUESSROW.circles[i],[0])) {
+        } else if (CURRENTGAMECOLOURS.includes(GUESSROW.circles[i], [0])) {
             GUESSROW.feedback.push("white");
         } else {
             GUESSROW.feedback.push("light-grey");
@@ -173,6 +173,14 @@ function checkUserSubmission() {
  * that row of guesses in the feedback section of the game. 
  */
 function provideFeedback() {
+    //Fisher Yates method of shuffling my feedback array - learnt at W3 schools
+    for (let i = GUESSROW.feedback.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const k = GUESSROW.feedback[i];
+        GUESSROW.feedback[i] = GUESSROW.feedback[j];
+        GUESSROW.feedback[j] = k;
+    }
+    
     const topRow = document.getElementsByClassName("guess-row")[0];
     const feedbackCircles = topRow.getElementsByClassName("feedback");
 
@@ -185,6 +193,7 @@ function provideFeedback() {
         }
     }
 }
+
 
 
 /**

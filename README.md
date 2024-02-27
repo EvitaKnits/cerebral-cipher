@@ -229,6 +229,7 @@ I learnt how to refresh the page when you click a button here: https://sentry.io
 I learnt how to use event delegation here: https://byby.dev/js-add-event-listener
 I learnt how to disable buttons with JavaScript here: https://www.altcademy.com/blog/how-to-disable-a-button-in-javascript/
 I learnt about pointer events via tutoring and this link: https://www.w3schools.com/csSref/css3_pr_pointer-events.php 
+I learnt how to do the Fisher Yates Method of shuffling an array here: https://www.w3schools.com/js/js_array_sort.asp 
 
 ### General Credit
 I want to thank the open source community for the great resources that remind me of what I learnt in my Code Institute lessons, especially https://www.w3schools.com/ and https://developer.mozilla.org/en-US/

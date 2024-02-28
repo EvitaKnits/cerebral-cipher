@@ -12,6 +12,10 @@ const GUESSROW = {
     feedback: []
 };
 
+const SUBMITBUTTON = document.getElementsByClassName("submit-control");
+SUBMITBUTTON[0].disabled = true;
+SUBMITBUTTON[1].disabled = true;
+
 const UNDOBUTTON = document.getElementsByClassName("undo-control");
 const RESETBUTTON = document.getElementsByClassName("reset-control");
 
@@ -81,8 +85,14 @@ function colourAssignment(event) {
             GUESSROW.circles.push("black");
         }
         styleCurrentGuessRow();
-    }
+    } 
+
+    if (GUESSROW.circles.length === 4) {
+        SUBMITBUTTON[0].disabled = false;
+        SUBMITBUTTON[1].disabled = false;
 }
+}
+
 /**
  * This function styles the current guess row based on the values assigned in the GUESSROW object's circles array.
  */
@@ -140,11 +150,9 @@ document.addEventListener("click", userSubmission);
 function userSubmission(event) {
     if (event.target.classList.contains("submit-control")) {
         for (i = 0; i < UNDOBUTTON.length; i++) {
-            if (GUESSROW.circles.length === 4) {
                 UNDOBUTTON[i].disabled = true;
                 RESETBUTTON[i].disabled = true;
             }
-        }
         checkUserSubmission();
         provideFeedback();
         if (WIN === false) {
@@ -201,12 +209,9 @@ function provideFeedback() {
     const topRow = document.getElementsByClassName("guess-row")[0];
     const feedbackCircles = topRow.getElementsByClassName("feedback");
 
-    // if i is less than length of circles then use circles value otherwise light-grey 
     for (let i = 0; i < 4; i++) {
         if (i < GUESSROW.feedback.length) {
             feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], GUESSROW.feedback[i]);
-        } else {
-            feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], "light-grey");
         }
     }
 }
@@ -217,6 +222,8 @@ function provideFeedback() {
  */
 function advanceRound() {
     GUESSROW.currentRound++;
+    SUBMITBUTTON[0].disabled = true;
+    SUBMITBUTTON[1].disabled = true;
     if (GUESSROW.currentRound < 11) {
 
         for (i = 0; i < UNDOBUTTON.length; i++) {

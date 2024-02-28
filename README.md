@@ -181,13 +181,15 @@ I went through the site systematically, checking that each image had alternative
 
 #### Bug One
 
-**Issue:** The title above the YouTube video is not aligned with the left edge of the video, whereas the title above the image next to the YouTube video is (see image below). This is only on screens larger than a tablet. 
+**Issue:** I believed I had ensured that the user could not click the submit button if they had not chosen four colours to make up their guess. I recalled this worked at the time of coding it but I noticed towards the end of my project, that it had stopped working at some point (or had never worked, I can't be certain) and the user could submit an incomplete row. 
 
 **BEFORE**
 
-![Bug One]()
+![Bug One](documentation/bug-one.png)
 
 **Fix:** 
+In my investigation, I found that the line of code I had intended to perform this check inside the userSubmission function `if (GUESSROW.circles.length === 4) {` wasn't actually going to to achieve the desired outcome. I had to change things so the submit button would be disabled by default and then conditionally enabled. Please see the difference between commit THIS and commit THIS for the changes I made to achieve this.
+
 
 **AFTER**
 

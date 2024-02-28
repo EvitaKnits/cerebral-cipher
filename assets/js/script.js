@@ -13,9 +13,6 @@ const GUESSROW = {
 };
 
 const SUBMITBUTTON = document.getElementsByClassName("submit-control");
-SUBMITBUTTON[0].disabled = true;
-SUBMITBUTTON[1].disabled = true;
-
 const UNDOBUTTON = document.getElementsByClassName("undo-control");
 const RESETBUTTON = document.getElementsByClassName("reset-control");
 
@@ -85,12 +82,7 @@ function colourAssignment(event) {
             GUESSROW.circles.push("black");
         }
         styleCurrentGuessRow();
-    } 
-
-    if (GUESSROW.circles.length === 4) {
-        SUBMITBUTTON[0].disabled = false;
-        SUBMITBUTTON[1].disabled = false;
-}
+    }
 }
 
 /**
@@ -148,11 +140,13 @@ document.addEventListener("click", userSubmission);
  * against the code that was set in gameSetup. It then invokes the provideFeedback function followed by the advanceRound function.
  */
 function userSubmission(event) {
-    if (event.target.classList.contains("submit-control")) {
+    if (event.target.classList.contains("submit-control") && (GUESSROW.circles.length < 4)) {
+        alert("You cannot submit your guess until you've got all four colour choices for this round.")
+    } else if (event.target.classList.contains("submit-control")){
         for (i = 0; i < UNDOBUTTON.length; i++) {
-                UNDOBUTTON[i].disabled = true;
-                RESETBUTTON[i].disabled = true;
-            }
+            UNDOBUTTON[i].disabled = true;
+            RESETBUTTON[i].disabled = true;
+        }
         checkUserSubmission();
         provideFeedback();
         if (WIN === false) {
@@ -222,10 +216,7 @@ function provideFeedback() {
  */
 function advanceRound() {
     GUESSROW.currentRound++;
-    SUBMITBUTTON[0].disabled = true;
-    SUBMITBUTTON[1].disabled = true;
     if (GUESSROW.currentRound < 11) {
-
         for (i = 0; i < UNDOBUTTON.length; i++) {
             if (GUESSROW.circles.length === 4) {
                 UNDOBUTTON[i].disabled = false;
@@ -297,6 +288,8 @@ function endGame() {
             }
         }
     }
+    SUBMITBUTTON[0].disabled = true;
+    SUBMITBUTTON[1].disabled = true;
 }
 
 // Modal for rules box

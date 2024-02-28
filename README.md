@@ -188,10 +188,12 @@ I went through the site systematically, checking that each image had alternative
 ![Bug One](documentation/bug-one.png)
 
 **Fix:** 
-In my investigation, I found that the line of code I had intended to perform this check inside the userSubmission function `if (GUESSROW.circles.length === 4) {` wasn't actually going to to achieve the desired outcome. I had to change things so the submit button would be disabled by default and then conditionally enabled. Please see the difference between commit THIS and commit THIS for the changes I made to achieve this.
+In my investigation, I found that the line of code I had intended to perform this check inside the userSubmission function `if (GUESSROW.circles.length === 4) {` wasn't actually going to to achieve the desired outcome. I had to change things so the submit button would be disabled by default and then conditionally enabled. Please see the difference between [this commit before](https://github.com/EvitaKnits/cerebral-cipher/commit/d8690fcfeb51c358c2ff1a60c5cd87e6e7bc58d2) and [this commit after](https://github.com/EvitaKnits/cerebral-cipher/commit/efa6433d3fcad936e2bfc3b39c7b67555854a38f) for the changes I made to achieve this.
 
 
 **AFTER**
+
+![Bug One Fixed](documentation/bug-one-fixed.png)
 
 ### Unresolved Bugs
 

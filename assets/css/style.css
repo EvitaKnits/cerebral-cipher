@@ -71,6 +71,10 @@ h2 {
   border-radius: 50%;
 }
 
+.glow {
+  box-shadow: 0 0 0 4px #c0b139;
+}
+
 #buttons {
   display: flex;
   flex-direction: column;

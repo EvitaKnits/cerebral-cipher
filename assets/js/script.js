@@ -6,6 +6,8 @@ const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
 const CURRENTGAMECOLOURS = [];
 
+const CODECIRCLES = document.getElementsByClassName("code-circle");
+
 const GUESSROW = {
     currentRound: 1,
     circles: [],
@@ -142,7 +144,7 @@ document.addEventListener("click", userSubmission);
 function userSubmission(event) {
     if (event.target.classList.contains("submit-control") && (GUESSROW.circles.length < 4)) {
         alert("You cannot submit your guess until you've got all four colour choices for this round.")
-    } else if (event.target.classList.contains("submit-control")){
+    } else if (event.target.classList.contains("submit-control")) {
         for (i = 0; i < UNDOBUTTON.length; i++) {
             UNDOBUTTON[i].disabled = true;
             RESETBUTTON[i].disabled = true;
@@ -192,20 +194,28 @@ function checkUserSubmission() {
  * that row of guesses in the feedback section of the game. 
  */
 function provideFeedback() {
-    //Fisher Yates method of shuffling my feedback array - learnt at W3 schools
-    for (let i = GUESSROW.feedback.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const k = GUESSROW.feedback[i];
-        GUESSROW.feedback[i] = GUESSROW.feedback[j];
-        GUESSROW.feedback[j] = k;
-    }
+    if (GUESSROW.currentRound < 10) {
+        //Fisher Yates method of shuffling my feedback array - learnt at W3 schools
+        for (let i = GUESSROW.feedback.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const k = GUESSROW.feedback[i];
+            GUESSROW.feedback[i] = GUESSROW.feedback[j];
+            GUESSROW.feedback[j] = k;
+        }
 
-    const topRow = document.getElementsByClassName("guess-row")[0];
-    const feedbackCircles = topRow.getElementsByClassName("feedback");
+        const topRow = document.getElementsByClassName("guess-row")[0];
+        const feedbackCircles = topRow.getElementsByClassName("feedback");
 
-    for (let i = 0; i < 4; i++) {
-        if (i < GUESSROW.feedback.length) {
-            feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], GUESSROW.feedback[i]);
+        for (let i = 0; i < 4; i++) {
+            if (i < GUESSROW.feedback.length) {
+                feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], GUESSROW.feedback[i]);
+            }
+        }
+    } else {
+                for (i = 0; i < GUESSROW.feedback.length; i++) {
+            if (GUESSROW.feedback[i] === "red") {
+                CODECIRCLES[i].classList.add("glow");
+            }
         }
     }
 }
@@ -263,9 +273,9 @@ function advanceRound() {
  */
 function endGame() {
     //reveal the colours of the code in the top regardless of win or lose 
-    const codeCircles = document.getElementsByClassName("code-circle");
+    const CODECIRCLES = document.getElementsByClassName("code-circle");
     for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        codeCircles[i].classList.replace(codeCircles[i].classList[1], CURRENTGAMECOLOURS[i])
+        CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], CURRENTGAMECOLOURS[i])
     };
 
     let lossNumber = 0;
@@ -279,6 +289,7 @@ function endGame() {
 
         if (WIN === true) {
             codeMessage.innerHTML = "YOU WIN!";
+            CODECIRCLES[i].classList.add("glow");
         } else {
             if (lossNumber === 0) {
                 codeMessage.innerHTML = "Oof! Wipeout.";

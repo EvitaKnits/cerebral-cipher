@@ -15,6 +15,8 @@ const GUESSROW = {
 const UNDOBUTTON = document.getElementsByClassName("undo-control");
 const RESETBUTTON = document.getElementsByClassName("reset-control");
 
+let WIN = false;
+
 /* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
 how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
 
@@ -166,6 +168,19 @@ function checkUserSubmission() {
             GUESSROW.feedback.push("light-grey");
         }
     }
+
+    for (i = 0; i < GUESSROW.feedback.length; i++) {
+        if (GUESSROW.feedback[i] === "red") {
+            WIN = true;
+        } else {
+            WIN = false;
+            break;
+        }
+    }
+
+    if (WIN === true) {
+        endGame();
+    }
 }
 
 /**
@@ -200,17 +215,17 @@ function provideFeedback() {
  */
 function advanceRound() {
     GUESSROW.currentRound++;
-    if (GUESSROW.currentRound <11) {
+    if (GUESSROW.currentRound < 11) {
 
-    for (i = 0; i < UNDOBUTTON.length; i++) {
-        if (GUESSROW.circles.length === 4) {
-            UNDOBUTTON[i].disabled = false;
-            RESETBUTTON[i].disabled = false;
+        for (i = 0; i < UNDOBUTTON.length; i++) {
+            if (GUESSROW.circles.length === 4) {
+                UNDOBUTTON[i].disabled = false;
+                RESETBUTTON[i].disabled = false;
+            }
         }
-    }
 
-    const rowContainer = document.getElementById("game-area");
-    rowContainer.innerHTML = `
+        const rowContainer = document.getElementById("game-area");
+        rowContainer.innerHTML = `
     <div class="guess-row">
         <div class="round-number"><b></b></div>
         <div class="colour-circles">
@@ -231,10 +246,20 @@ function advanceRound() {
         </div>
     </div> ` + rowContainer.innerHTML;
 
-    const round = document.getElementsByClassName("round-number")[0];
-    round.innerHTML = [GUESSROW.currentRound];
-    GUESSROW.circles = [];
+        const round = document.getElementsByClassName("round-number")[0];
+        round.innerHTML = [GUESSROW.currentRound];
+        GUESSROW.circles = [];
+    } else {
+        endGame();
+    }
 }
+
+/**
+ * Once 10 rounds have elapsed, the advanceRound function stops allowing further guess rows and calls this function
+ * to provide the win or lose at the end of the game. 
+ */
+function endGame() {
+   
 }
 
 // Modal for rules box

@@ -249,6 +249,9 @@ function advanceRound() {
         const round = document.getElementsByClassName("round-number")[0];
         round.innerHTML = [GUESSROW.currentRound];
         GUESSROW.circles = [];
+
+        const secondRowDown = document.getElementsByClassName("guess-row")[1];
+        secondRowDown.classList.add("unhighlight");
     } else {
         endGame();
     }

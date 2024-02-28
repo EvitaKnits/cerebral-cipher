@@ -106,9 +106,13 @@ h2 {
 
 .guess-row {
   display: flex;
-  border: 2px solid #6D7F86;
+  border: 2px solid #c0b139;
   border-radius: 5px;
   margin-top: 1em;
+}
+
+.unhighlight {
+  border: 2px solid #6D7F86;
 }
 
 .round-number {

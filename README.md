@@ -217,6 +217,7 @@ The live link can be found here:
 ### Content
 I used this rulebook for the original Mastermind game: https://www.pressmantoy.com/wp-content/uploads/2018/07/3018K10_v1_0218_Mastermind_IM.pdf
 I used this website to lighten #6D7F86 from my colour scheme to use as my background colour on the largest screen size: https://mdigi.tools/lighten-color/#6d7f86
+I used this website to saturate #A79E52 from my colour scheme to use as my border colour for the current guess row to highlight it: https://mdigi.tools/saturate-color/#a79e52 
 
 **Favicon**
 I got my icon from here: https://www.flaticon.com/free-icon/brain_3286097?term=brain&page=1&position=22&origin=search&related_id=3286097

@@ -14,6 +14,10 @@ const GUESSROW = {
     feedback: []
 };
 
+let CURRENTTRACKER = {
+
+}
+
 const SUBMITBUTTON = document.getElementsByClassName("submit-control");
 const UNDOBUTTON = document.getElementsByClassName("undo-control");
 const RESETBUTTON = document.getElementsByClassName("reset-control");
@@ -165,15 +169,44 @@ function userSubmission(event) {
  */
 function checkUserSubmission() {
     GUESSROW.feedback = [];
+    //populate the CURRENTTRACKER with names of CURRENTGAMECOLOURS but not more than once
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        if ('CURRENTGAMECOLOURS[i]' in CURRENTTRACKER === false) {
+            CURRENTTRACKER[CURRENTGAMECOLOURS[i]] = 0;
+        }
+    }
+    // check if each CURRENTGAMECOLOURS value appears in the current GUESSROW.circles and assign a feedback peg accordingly
     for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
         if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
             GUESSROW.feedback.push("red");
-        } else if (CURRENTGAMECOLOURS.includes(GUESSROW.circles[i], [0])) {
-            GUESSROW.feedback.push("white");
+            //increment the tracker for that colour
+            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+        } else if (GUESSROW.circles.includes(CURRENTGAMECOLOURS[i], [0])) {
+            //check how many times the current colour appears in the guess
+            let colourNumber = 0;
+            for (h = 0; h < GUESSROW.circles.length; h++) {
+                if (GUESSROW.circles[h] === CURRENTGAMECOLOURS[i]) {
+                    colourNumber++;
+                }
+            }
+
+            //if number of that colour in the guess is less than the number of that colour in the tracker
+            if (colourNumber > CURRENTTRACKER[CURRENTGAMECOLOURS[i]]) {
+                GUESSROW.feedback.push("white");
+                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+            } else {
+                GUESSROW.feedback.push("grey");
+                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+            }
+
         } else {
-            GUESSROW.feedback.push("light-grey");
+            GUESSROW.feedback.push("grey");
+            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
         }
     }
+
+    //clear the current tracker
+    CURRENTTRACKER = {};
 
     for (i = 0; i < GUESSROW.feedback.length; i++) {
         if (GUESSROW.feedback[i] === "red") {
@@ -187,7 +220,9 @@ function checkUserSubmission() {
     if (WIN === true) {
         endGame();
     }
+
 }
+
 
 /**
  * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and light-grey(default colour) pegs should be presented for 
@@ -212,7 +247,7 @@ function provideFeedback() {
             }
         }
     } else {
-                for (i = 0; i < GUESSROW.feedback.length; i++) {
+        for (i = 0; i < GUESSROW.feedback.length; i++) {
             if (GUESSROW.feedback[i] === "red") {
                 CODECIRCLES[i].classList.add("glow");
             }

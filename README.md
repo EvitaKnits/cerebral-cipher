@@ -181,7 +181,8 @@ I went through the site systematically, checking that each image had alternative
 
 #### Bug One
 
-**Issue:** I believed I had ensured that the user could not click the submit button if they had not chosen four colours to make up their guess. I recalled this worked at the time of coding it but I noticed towards the end of my project, that it had stopped working at some point (or had never worked, I can't be certain) and the user could submit an incomplete row. 
+**Issue:** 
+I believed I had ensured that the user could not click the submit button if they had not chosen four colours to make up their guess. I recalled this worked at the time of coding it but I noticed towards the end of my project, that it had stopped working at some point (or had never worked, I can't be certain) and the user could submit an incomplete row. 
 
 **BEFORE**
 
@@ -190,10 +191,131 @@ I went through the site systematically, checking that each image had alternative
 **Fix:** 
 In my investigation, I found that the line of code I had intended to perform this check inside the userSubmission function `if (GUESSROW.circles.length === 4) {` wasn't actually going to to achieve the desired outcome. I had to change things so the submit button would be disabled by default and then conditionally enabled. Please see the difference between [this commit before](https://github.com/EvitaKnits/cerebral-cipher/commit/d8690fcfeb51c358c2ff1a60c5cd87e6e7bc58d2) and [this commit after](https://github.com/EvitaKnits/cerebral-cipher/commit/efa6433d3fcad936e2bfc3b39c7b67555854a38f) for the changes I made to achieve this.
 
-
 **AFTER**
 
 ![Bug One Fixed](documentation/bug-one-fixed.png)
+
+#### Bug Two
+
+**Issue:** 
+I had implemented a simple function to check the user's guess submission which I believed provided the correct feedback to the user, adhering to the rules of the game. I saw however that when there were multiple guesses for one correct colour, the feedback would be incorrect. I assessed the submission for each individual guess circle without taking into account the other guess circles which gave me incorrect results. For example: 
+
+Incorrect Behaviour:
+- Code set: Yellow Blue Green Black
+- Guess: Green Green Green Green
+- Feedback: White White Red White
+
+This incorrectly provides the feedback that one of your guess circles is the right colour and in the right place and the other three are the correct colour but in the wrong place. This goes against the rules of the game.
+
+Desired Behaviour:
+- Code set: Yellow Blue Green Black
+- Guess: Green Green Green Green
+- Feedback: Grey Grey Red Grey
+
+This correctly provides the feedback that you have gotten one colour correct and in the right place.
+
+**BEFORE**
+```
+function checkUserSubmission() {
+    GUESSROW.feedback = [];
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
+            GUESSROW.feedback.push("red");
+        } else if (CURRENTGAMECOLOURS.includes(GUESSROW.circles[i], [0])) {
+            GUESSROW.feedback.push("white");
+        } else {
+            GUESSROW.feedback.push("light-grey");
+        }
+    }
+    for (i = 0; i < GUESSROW.feedback.length; i++) {
+        if (GUESSROW.feedback[i] === "red") {
+            WIN = true;
+        } else {
+            WIN = false;
+            break;
+        }
+    }
+    if (WIN === true) {
+        endGame();
+    }
+}
+
+```
+
+**Fix:**
+I needed to change my code to keep track of the other guess circles and to make a subtle shift from comparing the guess row to the code set, to comparing the code set to the guess row. This allowed me to evaluate each colour circle in the code that had been set in turn.
+
+For each code colour circle: 
+```mermaid
+flowchart TD
+    A[Does the coloured circle in the guess match the \n coloured circle in the same position in the code?] --> |Yes| B[Red Feedback Circle]
+    A --> |No| C[Does the coloured circle in the guess match \n any coloured circle in any position in the code?]
+    C --> |No| D[Grey Feedback Circle]
+    C --> |Yes| E[Has this colour had the correct amount \n of white feedback circles for it already?]
+    E --> |Yes| D
+    E --> |No| F[White Feedback Circle]
+```
+
+**AFTER**
+```
+Function checkUserSubmission() {
+    GUESSROW.feedback = [];
+    //populate the CURRENTTRACKER with names of CURRENTGAMECOLOURS but not more than once
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        if ('CURRENTGAMECOLOURS[i]' in CURRENTTRACKER === false) {
+            CURRENTTRACKER[CURRENTGAMECOLOURS[i]] = 0;
+        }
+    }
+    // check if each CURRENTGAMECOLOURS value appears in the current GUESSROW.circles and assign a feedback peg accordingly
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
+            GUESSROW.feedback.push("red");
+            //increment the tracker for that colour
+            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+        } else if (GUESSROW.circles.includes(CURRENTGAMECOLOURS[i], [0])) {
+            //check how many times the current colour appears in the guess
+            let colourNumber = 0;
+            for (h = 0; h < GUESSROW.circles.length; h++) {
+                if (GUESSROW.circles[h] === CURRENTGAMECOLOURS[i]) {
+                    colourNumber++;
+                }
+            }
+
+            //if number of that colour in the guess is less than the number of that colour in the tracker
+            if (colourNumber > CURRENTTRACKER[CURRENTGAMECOLOURS[i]]) {
+                GUESSROW.feedback.push("white");
+                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+            } else {
+                GUESSROW.feedback.push("grey");
+                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+            }
+
+        } else {
+            GUESSROW.feedback.push("grey");
+            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+        }
+    }
+
+    //clear the current tracker
+    CURRENTTRACKER = {};
+
+    for (i = 0; i < GUESSROW.feedback.length; i++) {
+        if (GUESSROW.feedback[i] === "red") {
+            WIN = true;
+        } else {
+            WIN = false;
+            break;
+        }
+    }
+
+    if (WIN === true) {
+        endGame();
+    }
+
+}
+```
+
+
 
 ### Unresolved Bugs
 

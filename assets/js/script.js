@@ -169,7 +169,9 @@ document.addEventListener("click", userSubmission);
  */
 function userSubmission(event) {
     if (event.target.classList.contains("submit-control") && (GUESSROW.circles.length < 4)) {
-        alert("You cannot submit your guess until you've got all four colour choices for this round.")
+        //Modal for message for when user attempts to submit less than four guesses in a row
+        const messageModal = document.getElementById("message-modal");
+        messageModal.style.display = "block";
     } else if (event.target.classList.contains("submit-control")) {
         for (i = 0; i < UNDOBUTTON.length; i++) {
             UNDOBUTTON[i].disabled = true;
@@ -368,6 +370,7 @@ function endGame() {
 }
 
 // Modal for rules box
+
 /* Source for modal tutorial https://www.w3schools.com/howto/howto_css_modals.asp but I changed their method 
 to use the functions and Event Listeners in the way I was taught at Code Institute */
 
@@ -392,4 +395,18 @@ closeButton.addEventListener("click", hideRules);
  */
 function hideRules() {
     modal.style.display = "none";
+}
+
+//Modal for message for when user attempts to submit less than four guesses in a row is mostly in the userSubmission function as it appears conditionally
+
+/**
+ * This function below is just to hide the Message modal box
+ */
+
+const closeMessageButton = document.getElementsByClassName("close-modal")[1];
+closeMessageButton.addEventListener("click", hideMessage);
+
+function hideMessage () {
+    const messageModal = document.getElementById("message-modal");
+    messageModal.style.display = "none";
 }

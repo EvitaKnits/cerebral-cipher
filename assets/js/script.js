@@ -189,7 +189,7 @@ function checkUserSubmission() {
     for (i = 0; i < currentColoursCopy.length; i++) {
         if (currentGuessCopy.includes(currentColoursCopy[i])) {
             GUESSROW.feedback.push("white");
-            currentColoursCopy[currentColoursCopy.indexOf(currentGuessCopy[i])] = "done";
+            currentColoursCopy[currentColoursCopy.indexOf(currentGuessCopy[i])] = "null";
         }
     }
     while (GUESSROW.feedback.length < 4) {
@@ -204,7 +204,7 @@ function checkUserSubmission() {
             break;
         }
     }
-    
+
     if (WIN === true) {
         endGame();
     }
@@ -215,28 +215,26 @@ function checkUserSubmission() {
  * circles that should be presented for that row of guesses in the feedback section of the game. 
  */
 function provideFeedback() {
-    if (GUESSROW.currentRound < 10) {
-        //Fisher Yates method of shuffling my feedback array - learnt at W3 schools
-        for (let i = GUESSROW.feedback.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            const k = GUESSROW.feedback[i];
-            GUESSROW.feedback[i] = GUESSROW.feedback[j];
-            GUESSROW.feedback[j] = k;
-        }
+    //make a copy of my feedback array in order to shuffle it
+    let currentFeedbackCopy = [];
+    for (i = 0; i < GUESSROW.feedback.length; i++) {
+        currentFeedbackCopy[i] = GUESSROW.feedback[i];
+    }
 
-        const topRow = document.getElementsByClassName("guess-row")[0];
-        const feedbackCircles = topRow.getElementsByClassName("feedback");
+    //Fisher Yates method of shuffling my feedback array - learnt at W3 schools
+    for (let i = currentFeedbackCopy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const k = currentFeedbackCopy[i];
+        currentFeedbackCopy[i] = currentFeedbackCopy[j];
+        currentFeedbackCopy[j] = k;
+    }
 
-        for (let i = 0; i < 4; i++) {
-            if (i < GUESSROW.feedback.length) {
-                feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], GUESSROW.feedback[i]);
-            }
-        }
-    } else {
-        for (i = 0; i < GUESSROW.feedback.length; i++) {
-            if (GUESSROW.feedback[i] === "red") {
-                CODECIRCLES[i].classList.add("glow");
-            }
+    const topRow = document.getElementsByClassName("guess-row")[0];
+    const feedbackCircles = topRow.getElementsByClassName("feedback");
+
+    for (let i = 0; i < 4; i++) {
+        if (i < currentFeedbackCopy.length) {
+            feedbackCircles[i].classList.replace(feedbackCircles[i].classList[1], currentFeedbackCopy[i]);
         }
     }
 }
@@ -293,11 +291,29 @@ function advanceRound() {
  * to provide the win or lose at the end of the game and the associated styling. 
  */
 function endGame() {
-    //reveal the colours of the code in the top regardless of win or lose 
+    //reveal the colours of the code in the top regardless of win or lose and highlight the correct answers 
     const CODECIRCLES = document.getElementsByClassName("code-circle");
     for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
         CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], CURRENTGAMECOLOURS[i])
     };
+
+    //identify the correct answers again but instead of pushing red to feedback array, push the highlight class to the code circle
+    GUESSROW.feedback = [];
+    let currentColoursCopy = [];
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        currentColoursCopy[i] = CURRENTGAMECOLOURS[i];
+    }
+
+    let currentGuessCopy = [];
+    for (i = 0; i < GUESSROW.circles.length; i++) {
+        currentGuessCopy[i] = GUESSROW.circles[i];
+    }
+
+    for (i = 0; i < currentGuessCopy.length; i++) {
+        if (currentGuessCopy[i] === currentColoursCopy[i]) {
+            CODECIRCLES[i].classList.add("glow");
+        }
+    }
 
     let lossNumber = 0;
 

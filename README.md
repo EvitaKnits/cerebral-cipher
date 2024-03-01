@@ -257,6 +257,20 @@ I changed the structure of this code when I was fixing bug three, so this issue 
 
 The before and after screenshots of bug three also illustrate bug four.
 
+#### Bug Five
+
+**Issue**
+This one was quite similar to bug four but this time no feedback was given upon winning, whether that was on the 2nd or the 10th round - it didn't matter which round. 
+
+**BEFORE**
+![Bug Five](documentation/bug-five.png)
+
+**Fix**
+I found that this was because when the checkUserSubmission function found that the user had won, it jumped to the endGame function. If the user does not win, the userSubmission function will then call provideFeedback. If the user does win however, we don't go back to the userSubmission function, just jump to endGame. I added a call to provideFeedback if the user wins, inside the checkUserSubmission function. 
+
+**AFTER**
+![Bug Five Fixed](documentation/bug-five-fixed.png)
+-
 ### Unresolved Bugs
 
 I don't believe I have left any of my bugs unresolved.

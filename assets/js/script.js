@@ -229,6 +229,7 @@ function checkUserSubmission() {
     }
 
     if (WIN === true) {
+        provideFeedback();
         endGame();
     }
 }

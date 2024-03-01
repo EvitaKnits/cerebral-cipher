@@ -24,15 +24,12 @@ const RESETBUTTON = document.getElementsByClassName("reset-control");
 
 let WIN = false;
 
-/* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round counter. I learnt 
-how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
+/* This refreshes the page when the 'New Game' button is clicked, thus clears the guess and feedback rows and resets the round 
+counter. I learnt how to do this here: https://sentry.io/answers/how-do-i-refresh-a-page-using-javascript/ */
 
 const newGame = document.getElementById("new-game-button");
 newGame.addEventListener("click", createNewGame);
 
-/**
- * This function refreshes the page in order to start a new game.
- */
 function createNewGame() {
     window.location.reload();
 }
@@ -126,6 +123,7 @@ function undoChoice(event) {
 //This event listener listens for the clicking of the reset button in the control panel and invokes the resetRow function. 
 
 document.addEventListener("click", resetRow);
+
 /**
  * This function allows the user to remove the colours in the whole input row, however many have been entered so far. 
  */
@@ -143,7 +141,8 @@ document.addEventListener("click", userSubmission);
 
 /**
  * This function prevents further changes to the user's input then invokes the checkUserSubmission function to check the answer
- * against the code that was set in gameSetup. It then invokes the provideFeedback function followed by the advanceRound function.
+ * against the code that was set in gameSetup. It then invokes the provideFeedback function followed by the advanceRound function 
+ * if the user hasn't won yet.
  */
 function userSubmission(event) {
     if (event.target.classList.contains("submit-control") && (GUESSROW.circles.length < 4)) {
@@ -163,50 +162,39 @@ function userSubmission(event) {
 }
 
 /**
- * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game in the gameSetup function. 
- * It provides the result of how many of the guesses were a) correct colour and in the correct place (red), b) correct colour in the incorrect place (white) and c) not a
- * correct colour (light-grey).
+ * This function checks the four user-inputted guesses against the four computer-generated choices made at the start of the game 
+ * in the gameSetup function. It provides the result of how many of the guesses were a) correct colour and in the correct place (red), 
+ * b) correct colour in the incorrect place (white) and c) not a * correct colour (grey). It then checks if the user has won this round.
  */
 function checkUserSubmission() {
     GUESSROW.feedback = [];
-    //populate the CURRENTTRACKER with names of CURRENTGAMECOLOURS but not more than once
+    let currentColoursCopy = [];
     for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        if ('CURRENTGAMECOLOURS[i]' in CURRENTTRACKER === false) {
-            CURRENTTRACKER[CURRENTGAMECOLOURS[i]] = 0;
-        }
+        currentColoursCopy[i] = CURRENTGAMECOLOURS[i];
     }
-    // check if each CURRENTGAMECOLOURS value appears in the current GUESSROW.circles and assign a feedback peg accordingly
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
+
+    let currentGuessCopy = [];
+    for (i = 0; i < GUESSROW.circles.length; i++) {
+        currentGuessCopy[i] = GUESSROW.circles[i];
+    }
+
+    for (i = 0; i < currentGuessCopy.length; i++) {
+        if (currentGuessCopy[i] === currentColoursCopy[i]) {
             GUESSROW.feedback.push("red");
-            //increment the tracker for that colour
-            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-        } else if (GUESSROW.circles.includes(CURRENTGAMECOLOURS[i], [0])) {
-            //check how many times the current colour appears in the guess
-            let colourNumber = 0;
-            for (h = 0; h < GUESSROW.circles.length; h++) {
-                if (GUESSROW.circles[h] === CURRENTGAMECOLOURS[i]) {
-                    colourNumber++;
-                }
-            }
-
-            //if number of that colour in the guess is less than the number of that colour in the tracker
-            if (colourNumber > CURRENTTRACKER[CURRENTGAMECOLOURS[i]]) {
-                GUESSROW.feedback.push("white");
-                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-            } else {
-                GUESSROW.feedback.push("grey");
-                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-            }
-
-        } else {
-            GUESSROW.feedback.push("grey");
-            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
+            currentGuessCopy[i] = "done";
+            currentColoursCopy[i] = "null";
         }
     }
 
-    //clear the current tracker
-    CURRENTTRACKER = {};
+    for (i = 0; i < currentColoursCopy.length; i++) {
+        if (currentGuessCopy.includes(currentColoursCopy[i])) {
+            GUESSROW.feedback.push("white");
+            currentColoursCopy[currentColoursCopy.indexOf(currentGuessCopy[i])] = "done";
+        }
+    }
+    while (GUESSROW.feedback.length < 4) {
+        GUESSROW.feedback.push("grey");
+    }
 
     for (i = 0; i < GUESSROW.feedback.length; i++) {
         if (GUESSROW.feedback[i] === "red") {
@@ -216,17 +204,15 @@ function checkUserSubmission() {
             break;
         }
     }
-
+    
     if (WIN === true) {
         endGame();
     }
-
 }
 
-
 /**
- * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and light-grey(default colour) pegs should be presented for 
- * that row of guesses in the feedback section of the game. 
+ * This function takes the output of the checkUserSubmission function and translates this into the number of red, white and grey feedback 
+ * circles that should be presented for that row of guesses in the feedback section of the game. 
  */
 function provideFeedback() {
     if (GUESSROW.currentRound < 10) {
@@ -256,8 +242,8 @@ function provideFeedback() {
 }
 
 /**
- * This function advances the round counter by one, enables the undo and reset buttons and provides a new 
- * row for guesses, pushing the previous row down the page.
+ * This function advances the round counter by one, enables the undo and reset buttons and provides a new row for guesses, pushing 
+ * the previous row down the page. This only happens if the round counter is below 11.
  */
 function advanceRound() {
     GUESSROW.currentRound++;
@@ -304,7 +290,7 @@ function advanceRound() {
 
 /**
  * Once 10 rounds have elapsed, the advanceRound function stops allowing further guess rows and calls this function
- * to provide the win or lose at the end of the game. 
+ * to provide the win or lose at the end of the game and the associated styling. 
  */
 function endGame() {
     //reveal the colours of the code in the top regardless of win or lose 

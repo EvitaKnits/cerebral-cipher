@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    gameSetup();
+    createNewGame();
 })
 
 const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
-const CURRENTGAMECOLOURS = [];
+let CURRENTGAMECOLOURS = [];
 
 const CODECIRCLES = document.getElementsByClassName("code-circle");
 
@@ -13,10 +13,6 @@ const GUESSROW = {
     circles: [],
     feedback: []
 };
-
-let CURRENTTRACKER = {
-
-}
 
 const SUBMITBUTTON = document.getElementsByClassName("submit-control");
 const UNDOBUTTON = document.getElementsByClassName("undo-control");
@@ -31,7 +27,34 @@ const newGame = document.getElementById("new-game-button");
 newGame.addEventListener("click", createNewGame);
 
 function createNewGame() {
-    window.location.reload();
+    const rowContainer = document.getElementById("game-area");
+    rowContainer.innerHTML = `
+<div class="guess-row">
+    <div class="round-number"><b>1</b></div>
+    <div class="colour-circles">
+        <span class="circle grey"></span>
+        <span class="circle grey"></span>
+        <span class="circle grey"></span>
+        <span class="circle grey"></span>
+    </div>
+    <div class="feedback-circles">
+        <div class="feedback-row">
+            <span class="feedback light-grey"></span>
+            <span class="feedback light-grey"></span>
+        </div>
+        <div class="feedback-row">
+            <span class="feedback light-grey"></span>
+            <span class="feedback light-grey"></span>
+        </div>
+    </div>
+</div> `
+
+
+    CURRENTGAMECOLOURS = [];
+    GUESSROW.currentRound = 1;
+    GUESSROW.circles = [];
+    GUESSROW.feedback = [];
+    gameSetup();
 }
 
 /**

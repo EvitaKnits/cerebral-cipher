@@ -214,36 +214,8 @@ Desired Behaviour:
 
 This correctly provides the feedback that you have gotten one colour correct and in the right place.
 
-**BEFORE**
-```
-function checkUserSubmission() {
-    GUESSROW.feedback = [];
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
-            GUESSROW.feedback.push("red");
-        } else if (CURRENTGAMECOLOURS.includes(GUESSROW.circles[i], [0])) {
-            GUESSROW.feedback.push("white");
-        } else {
-            GUESSROW.feedback.push("light-grey");
-        }
-    }
-    for (i = 0; i < GUESSROW.feedback.length; i++) {
-        if (GUESSROW.feedback[i] === "red") {
-            WIN = true;
-        } else {
-            WIN = false;
-            break;
-        }
-    }
-    if (WIN === true) {
-        endGame();
-    }
-}
-
-```
-
 **Fix:**
-I needed to change my code to keep track of the other guess circles and to make a subtle shift from comparing the guess row to the code set, to comparing the code set to the guess row. This allowed me to evaluate each colour circle in the code that had been set in turn.
+I made this flowchart to help me visualise what I needed to achieve to fix this bug:
 
 For each code colour circle: 
 ```mermaid
@@ -256,66 +228,34 @@ flowchart TD
     E --> |No| F[White Feedback Circle]
 ```
 
+It took me a couple of attempts with different approaches to get there. [This is the original](https://github.com/EvitaKnits/cerebral-cipher/commit/786af15807b1a2951f7f1603180fb00204837c5a) approach taken, but this created the incorrect behaviour shown above. [This commit](https://github.com/EvitaKnits/cerebral-cipher/commit/e8ac4874ec90e734ab946942352ab08a7b8a3407) shows where I tried to create a tracker that was updated each time I provided a piece of feedback for one of the code circles. This didn't always provide the correct feedback either, in the real edge cases where the logic needed to understand whether red feedback circles had been provided for the same colour. It also mattered what order the colours appeared in the feedback function, so this approach would require tracking lots of information to account for each colour's provided feedback and how much feedback should be provided whenever evaluating for a white feedback circle. The final fix and approach can be found in [this commit](https://github.com/EvitaKnits/cerebral-cipher/commit/b2124ebdeee96a54b40029daa0fecf72f16ee201). 
+
+The final approach creates copies of the current game colours and current guess being evaluated and changes the copy of the values after feedback has been provided for them. This means each code circle gets a single feedback circle every time and doesn't confuse the situation where they're being checked multiple times. 
+
+#### Bug Three 
+
+**Issue**
+When I changed the way the user submission was checked for Bug Two, this changed the way the feedback array was populated with the colours. This meant that the first item in the feedback array did not necessarily apply to the first colour in the code that had been set. This meant that regardless of which circles in the code had been guessed correctly, the number of correct answers would be the number of circles being highlighted but starting with circle one. So in the example below, two of the answers were correct: circles three and four. But circles one and two were highlighted. 
+
+**BEFORE**
+
+![Bug Three](documentation/bug-three.png)
+
+**Fix**
+Instead of using the feedback array to identify which code circles should be highlighted, I just repeated the checks for the red feedback pegs from scratch and pushed the 'glow' class to those circles to highlight them at game end. 
+
 **AFTER**
-```
-Function checkUserSubmission() {
-    GUESSROW.feedback = [];
-    //populate the CURRENTTRACKER with names of CURRENTGAMECOLOURS but not more than once
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        if ('CURRENTGAMECOLOURS[i]' in CURRENTTRACKER === false) {
-            CURRENTTRACKER[CURRENTGAMECOLOURS[i]] = 0;
-        }
-    }
-    // check if each CURRENTGAMECOLOURS value appears in the current GUESSROW.circles and assign a feedback peg accordingly
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        if (CURRENTGAMECOLOURS[i] === GUESSROW.circles[i]) {
-            GUESSROW.feedback.push("red");
-            //increment the tracker for that colour
-            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-        } else if (GUESSROW.circles.includes(CURRENTGAMECOLOURS[i], [0])) {
-            //check how many times the current colour appears in the guess
-            let colourNumber = 0;
-            for (h = 0; h < GUESSROW.circles.length; h++) {
-                if (GUESSROW.circles[h] === CURRENTGAMECOLOURS[i]) {
-                    colourNumber++;
-                }
-            }
+![Bug Three Fixed](documentation/bug-three-fixed.png)
 
-            //if number of that colour in the guess is less than the number of that colour in the tracker
-            if (colourNumber > CURRENTTRACKER[CURRENTGAMECOLOURS[i]]) {
-                GUESSROW.feedback.push("white");
-                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-            } else {
-                GUESSROW.feedback.push("grey");
-                CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-            }
+#### Bug Four
 
-        } else {
-            GUESSROW.feedback.push("grey");
-            CURRENTTRACKER[CURRENTGAMECOLOURS[i]]++;
-        }
-    }
+**Issue**
+My original implementation of assigning the highlight to the correct answers in the final reveal meant that I did not populate the feedback on the 10th round because I had used an if else statement that only provided the feedback if the current round number was less than 10. 
 
-    //clear the current tracker
-    CURRENTTRACKER = {};
+**Fix**
+I changed the structure of this code when I was fixing bug three, so this issue was also solved then as a side effect. The if else statement at fault was removed as part of that fix.
 
-    for (i = 0; i < GUESSROW.feedback.length; i++) {
-        if (GUESSROW.feedback[i] === "red") {
-            WIN = true;
-        } else {
-            WIN = false;
-            break;
-        }
-    }
-
-    if (WIN === true) {
-        endGame();
-    }
-
-}
-```
-
-
+The before and after screenshots of bug three also illustrate bug four.
 
 ### Unresolved Bugs
 
@@ -358,6 +298,8 @@ I learnt how to disable buttons with JavaScript here: https://www.altcademy.com/
 I learnt about pointer events via tutoring and this link: https://www.w3schools.com/csSref/css3_pr_pointer-events.php 
 I learnt how to do the Fisher Yates Method of shuffling an array here: https://www.w3schools.com/js/js_array_sort.asp 
 I learnt how to check if all array elements pass a test here: https://www.javascripttutorial.net/javascript-every/
+I learnt how to use indexOf here: https://www.w3schools.com/jsref/jsref_indexof.asp
+
 
 ### General Credit
 I want to thank the open source community for the great resources that remind me of what I learnt in my Code Institute lessons, especially https://www.w3schools.com/ and https://developer.mozilla.org/en-US/

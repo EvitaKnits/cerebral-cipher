@@ -26,6 +26,10 @@ counter. I learnt how to do this here: https://sentry.io/answers/how-do-i-refres
 const newGame = document.getElementById("new-game-button");
 newGame.addEventListener("click", createNewGame);
 
+/**
+ * This function sets the html and variables back to their start of game position, whether the page is loaded, refreshed or the 
+ * 'New Game' button is clicked.
+ */
 function createNewGame() {
     const rowContainer = document.getElementById("game-area");
     rowContainer.innerHTML = `
@@ -399,13 +403,12 @@ function hideRules() {
 
 //Modal for message for when user attempts to submit less than four guesses in a row is mostly in the userSubmission function as it appears conditionally
 
-/**
- * This function below is just to hide the Message modal box
- */
-
 const closeMessageButton = document.getElementsByClassName("close-modal")[1];
 closeMessageButton.addEventListener("click", hideMessage);
 
+/**
+ * This function below is just to hide the Message modal box
+ */
 function hideMessage () {
     const messageModal = document.getElementById("message-modal");
     messageModal.style.display = "none";

@@ -270,7 +270,21 @@ I found that this was because when the checkUserSubmission function found that t
 
 **AFTER**
 ![Bug Five Fixed](documentation/bug-five-fixed.png)
--
+
+#### Bug Six
+
+**Issue**
+In the larger non-touch-screen size, the scrollbar for the game area that contains the rounds, appears white and not the same colour as the background or some other colour from the colour scheme. 
+
+**BEFORE**
+![Bug Six](documentation/bug-six.png)
+
+**Fix**
+I just had to apply some styling to the scroll bar. I chose to use the same colour as the background to continue the minimalist design I was going for, so the scrollbar will not normally be visible. 
+
+**AFTER**
+![Bug Six Fixed](documentation/bug-six-fixed.png)
+
 ### Unresolved Bugs
 
 I don't believe I have left any of my bugs unresolved.

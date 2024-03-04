@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     createNewGame();
-})
+});
 
 const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
 let CURRENTGAMECOLOURS = [];
-
-const CODECIRCLES = document.getElementsByClassName("code-circle");
 
 const GUESSROW = {
     currentRound: 1,
@@ -51,7 +49,7 @@ function createNewGame() {
             <span class="feedback light-grey"></span>
         </div>
     </div>
-</div> `
+</div> `;
 
 
     CURRENTGAMECOLOURS = [];
@@ -82,8 +80,8 @@ function gameSetup() {
     const game = setFourNumbers();
     for (let i = 0; i < game.length; i++) {
         const gameNumber = game[i];
-        const gameColour = COLOURS[gameNumber]
-        CURRENTGAMECOLOURS.push(gameColour)
+        const gameColour = COLOURS[gameNumber];
+        CURRENTGAMECOLOURS.push(gameColour);
     }
 }
 
@@ -177,7 +175,7 @@ function userSubmission(event) {
         const messageModal = document.getElementById("message-modal");
         messageModal.style.display = "block";
     } else if (event.target.classList.contains("submit-control")) {
-        for (i = 0; i < UNDOBUTTON.length; i++) {
+        for (let i = 0; i < UNDOBUTTON.length; i++) {
             UNDOBUTTON[i].disabled = true;
             RESETBUTTON[i].disabled = true;
         }
@@ -198,16 +196,16 @@ function userSubmission(event) {
 function checkUserSubmission() {
     GUESSROW.feedback = [];
     let currentColoursCopy = [];
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+    for (let i = 0; i < CURRENTGAMECOLOURS.length; i++) {
         currentColoursCopy[i] = CURRENTGAMECOLOURS[i];
     }
 
     let currentGuessCopy = [];
-    for (i = 0; i < GUESSROW.circles.length; i++) {
+    for (let i = 0; i < GUESSROW.circles.length; i++) {
         currentGuessCopy[i] = GUESSROW.circles[i];
     }
 
-    for (i = 0; i < currentGuessCopy.length; i++) {
+    for (let i = 0; i < currentGuessCopy.length; i++) {
         if (currentGuessCopy[i] === currentColoursCopy[i]) {
             GUESSROW.feedback.push("red");
             currentGuessCopy[i] = "done";
@@ -215,7 +213,7 @@ function checkUserSubmission() {
         }
     }
 
-    for (i = 0; i < currentColoursCopy.length; i++) {
+    for (let i = 0; i < currentColoursCopy.length; i++) {
         if (currentGuessCopy.includes(currentColoursCopy[i])) {
             GUESSROW.feedback.push("white");
             currentGuessCopy[currentGuessCopy.indexOf(currentColoursCopy[i])] = "done";
@@ -225,7 +223,7 @@ function checkUserSubmission() {
         GUESSROW.feedback.push("grey");
     }
 
-    for (i = 0; i < GUESSROW.feedback.length; i++) {
+    for (let i = 0; i < GUESSROW.feedback.length; i++) {
         if (GUESSROW.feedback[i] === "red") {
             WIN = true;
         } else {
@@ -247,7 +245,7 @@ function checkUserSubmission() {
 function provideFeedback() {
     //make a copy of my feedback array in order to shuffle it
     let currentFeedbackCopy = [];
-    for (i = 0; i < GUESSROW.feedback.length; i++) {
+    for (let i = 0; i < GUESSROW.feedback.length; i++) {
         currentFeedbackCopy[i] = GUESSROW.feedback[i];
     }
 
@@ -276,7 +274,7 @@ function provideFeedback() {
 function advanceRound() {
     GUESSROW.currentRound++;
     if (GUESSROW.currentRound < 11) {
-        for (i = 0; i < UNDOBUTTON.length; i++) {
+        for (let i = 0; i < UNDOBUTTON.length; i++) {
             if (GUESSROW.circles.length === 4) {
                 UNDOBUTTON[i].disabled = false;
                 RESETBUTTON[i].disabled = false;
@@ -322,14 +320,14 @@ function advanceRound() {
  */
 function endGame() {
     //reveal the colours of the code in the top regardless of win or lose and highlight the correct answers 
-    const CODECIRCLES = document.getElementsByClassName("code-circle");
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], CURRENTGAMECOLOURS[i])
-    };
+    const codeCircles = document.getElementsByClassName("code-circle");
+    for (let i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        codeCircles[i].classList.replace(codeCircles[i].classList[1], CURRENTGAMECOLOURS[i]);
+    }
 
     let lossNumber = 0;
 
-    for (i = 0; i < GUESSROW.feedback.length; i++) {
+    for (let i = 0; i < GUESSROW.feedback.length; i++) {
         if (GUESSROW.feedback[i] === "red") {
             lossNumber++;
         }
@@ -338,7 +336,7 @@ function endGame() {
 
         if (WIN === true) {
             codeMessage.innerHTML = "YOU WIN!";
-            CODECIRCLES[i].classList.add("glow");
+            codeCircles[i].classList.add("glow");
         } else {
             if (lossNumber === 0) {
                 codeMessage.innerHTML = "Oof! Wipeout.";
@@ -355,18 +353,18 @@ function endGame() {
     //identify the correct answers again but instead of pushing red to feedback array, push the highlight class to the code circle
     GUESSROW.feedback = [];
     let currentColoursCopy = [];
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+    for (let i = 0; i < CURRENTGAMECOLOURS.length; i++) {
         currentColoursCopy[i] = CURRENTGAMECOLOURS[i];
     }
 
     let currentGuessCopy = [];
-    for (i = 0; i < GUESSROW.circles.length; i++) {
+    for (let i = 0; i < GUESSROW.circles.length; i++) {
         currentGuessCopy[i] = GUESSROW.circles[i];
     }
 
-    for (i = 0; i < currentGuessCopy.length; i++) {
+    for (let i = 0; i < currentGuessCopy.length; i++) {
         if (currentGuessCopy[i] === currentColoursCopy[i]) {
-            CODECIRCLES[i].classList.add("glow");
+            codeCircles[i].classList.add("glow");
         }
     }
 

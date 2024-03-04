@@ -179,21 +179,25 @@ The difference between these screen sizes can be seen in screenshots for bugs on
 
 ### Code Validation
 
-This was carried out by both link and direct input on the following tools: 
+This was carried out by direct input on the following tools: 
+
 - HTML via [W3C](https://validator.w3.org/)
 - CSS via [Jigsaw](https://jigsaw.w3.org/css-validator/)
-- JavaScript via [Linter]()
+- JavaScript via [JS Hint](https://jshint.com)
 
 I completed the validation after resolving all my bugs. 
 
-The CSS...
+The CSS was completely valid first time.
 
 The HTML needed the following changes: 
 1. I had to close one of my `<div>` elements that I'd forgotten to close.
 2. I had to change the headings of my two modal boxes to use a `<h2>` element instead of a `<h1>`
 3. I needed to add a non-displaying heading for my main game area section, to inform screen-reader users.
 
-The JavaScript...
+The JavaScript had no errors, just warnings, and needed the following changes: 
+1. I had to add a few semicolons that I had missed and remove an extra one I had accidentally added.
+2. I had not put 'let' in front of some of the 'i' variable in my loops which appeared to work but came up as undefined, so I added a 'let' to all of them.
+3. I had defined the same variable in two places. Once at the top as a global variable and once inside a function. I got rid of the global variable because I had in fact only used it inside a single function. 
 
 ### Lighthouse and Accessibility Testing
 

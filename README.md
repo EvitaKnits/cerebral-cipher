@@ -80,10 +80,10 @@ This game already has 4 bold primary/secondary colours, as well as black and whi
 
 ### Computer Choice Indicator / Game End Message
 ![Choice](documentation/choice.png)
+![Win](documentation/win.png)
+![Halfway There](documentation/halfway.png)
 
 At the start, this section of the screen indicates to the user that the computer has chosen and set the code for this game. When the user has either cracked the code or the 10 round are up, whichever is sooner, this changes to display the end game messaging depending on whether the user has won or if not, how many the user has gotten correct.
-
-![Win](documentation/win.png)
 
 ### Navigation Section
 ![Buttons](documentation/buttons.png)
@@ -242,6 +242,8 @@ It took me a couple of attempts with different approaches to get there. [This is
 
 The final approach creates copies of the current game colours and current guess being evaluated and changes the copy of the values after feedback has been provided for them. This means each code circle gets a single feedback circle every time and doesn't confuse the situation where they're being checked multiple times. 
 
+I made one last tweak, to fix my transposition error where I got my guess and game colour array names in the wrong place and therefore used the wrong word indicating this has been dealt with (null instead of done). This can be seen in [this commit](https://github.com/EvitaKnits/cerebral-cipher/commit/5c01cc1b02fc086c10165c61c5d06c8b44cb7605).
+
 #### Bug Three 
 
 **Issue**
@@ -294,6 +296,20 @@ I just had to apply some styling to the scroll bar. I chose to use the same colo
 
 **AFTER**
 ![Bug Six Fixed](documentation/bug-six-fixed.png)
+
+#### Bug Seven
+
+**Issue**
+The message accompanying the game end was not working correctly, remaining as it is at the start of the game: "Code Set"
+
+**BEFORE**
+![Bug Seven](documentation/bug-seven.png)
+
+**Fix**
+I saw that this was because part of my endGame function was clearing the GUESSROW.feedback array that the function was using to select the correct message to provide at game end. I therefore moved the part of the function that assigned the message to before this array is cleared, thus the message is selected first and everything now works as expected. 
+
+**AFTER**
+![Bug Seven Fixed](documentation/bug-seven-fixed.png)
 
 ### Unresolved Bugs
 

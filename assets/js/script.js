@@ -218,7 +218,7 @@ function checkUserSubmission() {
     for (i = 0; i < currentColoursCopy.length; i++) {
         if (currentGuessCopy.includes(currentColoursCopy[i])) {
             GUESSROW.feedback.push("white");
-            currentColoursCopy[currentColoursCopy.indexOf(currentGuessCopy[i])] = "null";
+            currentGuessCopy[currentGuessCopy.indexOf(currentColoursCopy[i])] = "done";
         }
     }
     while (GUESSROW.feedback.length < 4) {
@@ -327,24 +327,6 @@ function endGame() {
         CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], CURRENTGAMECOLOURS[i])
     };
 
-    //identify the correct answers again but instead of pushing red to feedback array, push the highlight class to the code circle
-    GUESSROW.feedback = [];
-    let currentColoursCopy = [];
-    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        currentColoursCopy[i] = CURRENTGAMECOLOURS[i];
-    }
-
-    let currentGuessCopy = [];
-    for (i = 0; i < GUESSROW.circles.length; i++) {
-        currentGuessCopy[i] = GUESSROW.circles[i];
-    }
-
-    for (i = 0; i < currentGuessCopy.length; i++) {
-        if (currentGuessCopy[i] === currentColoursCopy[i]) {
-            CODECIRCLES[i].classList.add("glow");
-        }
-    }
-
     let lossNumber = 0;
 
     for (i = 0; i < GUESSROW.feedback.length; i++) {
@@ -369,6 +351,25 @@ function endGame() {
             }
         }
     }
+
+    //identify the correct answers again but instead of pushing red to feedback array, push the highlight class to the code circle
+    GUESSROW.feedback = [];
+    let currentColoursCopy = [];
+    for (i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        currentColoursCopy[i] = CURRENTGAMECOLOURS[i];
+    }
+
+    let currentGuessCopy = [];
+    for (i = 0; i < GUESSROW.circles.length; i++) {
+        currentGuessCopy[i] = GUESSROW.circles[i];
+    }
+
+    for (i = 0; i < currentGuessCopy.length; i++) {
+        if (currentGuessCopy[i] === currentColoursCopy[i]) {
+            CODECIRCLES[i].classList.add("glow");
+        }
+    }
+
     SUBMITBUTTON[0].disabled = true;
     SUBMITBUTTON[1].disabled = true;
 }

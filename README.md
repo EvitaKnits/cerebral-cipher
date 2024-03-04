@@ -197,20 +197,32 @@ The HTML needed the following changes:
 The JavaScript had no errors, just warnings, and needed the following changes: 
 1. I had to add a few semicolons that I had missed and remove an extra one I had accidentally added.
 2. I had not put 'let' in front of some of the 'i' variable in my loops which appeared to work but came up as undefined, so I added a 'let' to all of them.
-3. I had defined the same variable in two places. Once at the top as a global variable and once inside a function. I got rid of the global variable because I had in fact only used it inside a single function. (Note: bug 8 was found after this point and this global variable was reinstated as it was needed in a second function)
+3. I had defined the same variable in two places. Once at the top as a global variable and once inside a function. I got rid of the global variable because I had in fact only used it inside a single function. (Note: bug 8 was found after this point and this global variable was reinstated as it was needed in a second function. I then checked the file in JS Hint again.)
 
 ### Lighthouse and Accessibility Testing
 
-I used Lighthouse in Chrome Devtools on the single page of my site, using the mobile setting.
+I used Lighthouse in Chrome Devtools on the single page of my site, using the mobile setting. Here is the initial result: 
+
+![Lighthouse](documentation/lighthouse.png)
+
+The only issue I had which lowered my accessibility score, was that I had not given my buttons accessible names. I created bug 9 to solve this.
 
 After resolving my lighthouse bugs, I reran the report. Here are the new results: 
+
+![Lighthouse Two](documentation/lighthouse-two.png) 
 
 #### Colour Contrast
 I also checked the colour contrast using of my color palette combinations using Coolors: https://coolors.co/contrast-checker/112a46-acc8e5.
 
+##### Text Colour on both background colours
+
+![Contrast](documentation/contrast.png)
+
+![Contrast Two](documentation/contrast-two.png)
+
 #### Alternative Text 
 
-I went through the site systematically, checking that each image had alternative text.
+I ensured I had set alternative text for the only image on my site: the logo. 
 
 ### Resolved Bugs
 
@@ -353,6 +365,14 @@ I needed to amend the createNewGame function to include:
 
 **AFTER**
 ![Bug Eight Fixed](documentation/bug-eight-fixed.png)
+
+#### Bug Nine
+
+**Issue**
+My game only received a score of 88 on Lighthouse for Accessibility. This is because the buttons do not have accessible names. 
+
+**Fix**
+I added accessible names to all my buttons and reran Lighthouse to ensure my score went up to 100, which it did. 
 
 ### Unresolved Bugs
 

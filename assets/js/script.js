@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const COLOURS = ["red", "blue", "green", "yellow", "white", "black"];
 
+const CODECIRCLES = document.getElementsByClassName("code-circle");
+
+const CODEMESSAGE = document.getElementById("code-message");
+
 let CURRENTGAMECOLOURS = [];
 
 const GUESSROW = {
@@ -29,6 +33,7 @@ newGame.addEventListener("click", createNewGame);
  * 'New Game' button is clicked.
  */
 function createNewGame() {
+    CODEMESSAGE.innerHTML = "Code Set";
     const rowContainer = document.getElementById("game-area");
     rowContainer.innerHTML = `
 <div class="guess-row">
@@ -51,11 +56,20 @@ function createNewGame() {
     </div>
 </div> `;
 
-
+    for (let i = 0; i < CURRENTGAMECOLOURS.length; i++) {
+        CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], "grey");
+        CODECIRCLES[i].classList.remove("glow");
+    };
+    
     CURRENTGAMECOLOURS = [];
     GUESSROW.currentRound = 1;
     GUESSROW.circles = [];
     GUESSROW.feedback = [];
+    for (let i = 0; i < UNDOBUTTON.length; i++) {
+        UNDOBUTTON[i].disabled = false;
+        RESETBUTTON[i].disabled = false;
+        SUBMITBUTTON[i].disabled = false;
+    };
     gameSetup();
 }
 
@@ -320,9 +334,9 @@ function advanceRound() {
  */
 function endGame() {
     //reveal the colours of the code in the top regardless of win or lose and highlight the correct answers 
-    const codeCircles = document.getElementsByClassName("code-circle");
+    const CODECIRCLES = document.getElementsByClassName("code-circle");
     for (let i = 0; i < CURRENTGAMECOLOURS.length; i++) {
-        codeCircles[i].classList.replace(codeCircles[i].classList[1], CURRENTGAMECOLOURS[i]);
+        CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], CURRENTGAMECOLOURS[i]);
     }
 
     let lossNumber = 0;
@@ -332,20 +346,18 @@ function endGame() {
             lossNumber++;
         }
 
-        const codeMessage = document.getElementById("code-message");
-
         if (WIN === true) {
-            codeMessage.innerHTML = "YOU WIN!";
-            codeCircles[i].classList.add("glow");
+            CODEMESSAGE.innerHTML = "YOU WIN!";
+            CODECIRCLES[i].classList.add("glow");
         } else {
             if (lossNumber === 0) {
-                codeMessage.innerHTML = "Oof! Wipeout.";
+                CODEMESSAGE.innerHTML = "Oof! Wipeout.";
             } else if (lossNumber === 1) {
-                codeMessage.innerHTML = "25% there!";
+                CODEMESSAGE.innerHTML = "25% there!";
             } else if (lossNumber === 2) {
-                codeMessage.innerHTML = "Halfway there!";
+                CODEMESSAGE.innerHTML = "Halfway there!";
             } else {
-                codeMessage.innerHTML = "So close!";
+                CODEMESSAGE.innerHTML = "So close!";
             }
         }
     }
@@ -364,7 +376,7 @@ function endGame() {
 
     for (let i = 0; i < currentGuessCopy.length; i++) {
         if (currentGuessCopy[i] === currentColoursCopy[i]) {
-            codeCircles[i].classList.add("glow");
+            CODECIRCLES[i].classList.add("glow");
         }
     }
 

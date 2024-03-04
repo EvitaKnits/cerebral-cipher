@@ -126,7 +126,7 @@ As well as running through the list of user needs and ensuring all the features 
 | | Check the correct message shows when the user gets 1, 2 or 3 correct | Relevant message appears if no win after 10 rounds | Bug 7 |
 | | Check the circles are highlighted at game end indicating which answers were correct | All circles are highlighted if the user wins. The correct answers the user gave are highlighted if they've guessed at least one correctly | Bug 3
 | Navigation Section | Check the "Rules" button works | The rules appear when the button is clicked | None |
-| | Check the "New Game" button works | The old game is cleared and a new game starts with a new secret code | None |
+| | Check the "New Game" button works | The old game is cleared and a new game starts with a new secret code | Bug 8 |
 | Game Area | Check new rows appear in the game area correctly | A new row appears after the previous one is submitted if the game hasn't ended due to winning or 10 rounds being played| None |
 | | Check that the correct feedback is given after submission | The correct feedback is given in the correct row | Bugs 2,4+5|
 | Controls Panel | Check colours are populated correctly when clicked | Colours are updated on the current row in the game area, from left to right | None |
@@ -197,7 +197,7 @@ The HTML needed the following changes:
 The JavaScript had no errors, just warnings, and needed the following changes: 
 1. I had to add a few semicolons that I had missed and remove an extra one I had accidentally added.
 2. I had not put 'let' in front of some of the 'i' variable in my loops which appeared to work but came up as undefined, so I added a 'let' to all of them.
-3. I had defined the same variable in two places. Once at the top as a global variable and once inside a function. I got rid of the global variable because I had in fact only used it inside a single function. 
+3. I had defined the same variable in two places. Once at the top as a global variable and once inside a function. I got rid of the global variable because I had in fact only used it inside a single function. (Note: bug 8 was found after this point and this global variable was reinstated as it was needed in a second function)
 
 ### Lighthouse and Accessibility Testing
 
@@ -335,6 +335,24 @@ I saw that this was because part of my endGame function was clearing the GUESSRO
 
 **AFTER**
 ![Bug Seven Fixed](documentation/bug-seven-fixed.png)
+
+#### Bug Eight
+
+**Issue** 
+When the "New Game" button is clicked, the win/lose message does not get reset. If the user wins or if all 10 rounds are used in the previous games, the control panel's bottom row of buttons is disabled and not reenabled when the new game begins. 
+
+**BEFORE**
+![Bug Eight](documentation/bug-eight.png)
+
+**Fix**
+I needed to amend the createNewGame function to include:
+- setting the message back to "Code Set"
+- removing the highlight from the correct code circles
+- making the code circles grey again
+- reenabling the submit, undo and reset buttons
+
+**AFTER**
+![Bug Eight Fixed](documentation/bug-eight-fixed.png)
 
 ### Unresolved Bugs
 

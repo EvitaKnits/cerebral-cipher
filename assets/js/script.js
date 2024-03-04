@@ -59,7 +59,7 @@ function createNewGame() {
     for (let i = 0; i < CURRENTGAMECOLOURS.length; i++) {
         CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], "grey");
         CODECIRCLES[i].classList.remove("glow");
-    };
+    }
     
     CURRENTGAMECOLOURS = [];
     GUESSROW.currentRound = 1;
@@ -69,7 +69,7 @@ function createNewGame() {
         UNDOBUTTON[i].disabled = false;
         RESETBUTTON[i].disabled = false;
         SUBMITBUTTON[i].disabled = false;
-    };
+    }
     gameSetup();
 }
 

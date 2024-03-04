@@ -4,33 +4,33 @@
 
 'Cerebral Cipher' is a site that hosts a small logic puzzle game played against the computer, based on the popular physical boardgame 'Mastermind'. 
 
-## REQUIREMENT GATHERING AND PLANNING
+## Requirement Gathering and Planning
 
 Before starting this project, I took some time to think about how to set up, lay out and develop this game. I wrote a few user stories and extracted the user needs from them as well. These needs will also help in my manual testing. For my technical preparation, I considered which functions I will require, as well as the potential way to organise my HTML IDs for styling use with my CSS.
 
-### User Stories:
+### User Stories
 
-As a player
-I want a game that is clearly laid out and intuitive
-So that I can easily understand how to play it and find all the parts I need
+**As a** player \
+**I want** a game that is clearly laid out and intuitive\
+**So that** I can easily understand how to play it and find all the parts I need
 
-As a player
-I want to control my guess input
-So that I am not stuck with the first four guesses I put in, should I change my mind
+**As a** player \
+**I want** to control my guess input\
+**So that** I am not stuck with the first four guesses I put in, should I change my mind
 
-As a player
-I want to be given enough chances to make my guess and learn from the feedback
-So that the game is satisfying and gives me adequate chance to win, without letting me go on infinitely
+**As a** player \
+**I want** to be given enough chances to make my guess and learn from the feedback \
+**So that** the game is satisfying and gives me adequate chance to win, without letting me go on infinitely
 
-As a player
-I want to be able to refer to the rules
-So that I can look at them at any point during the game to remind myself of anything I've forgotten
+**As a** player \
+**I want** to be able to refer to the rules \
+**So that** I can look at them at any point during the game to remind myself of anything I've forgotten
 
-As a player
-I want to be able to play more than one game
-So that I can play the number of games I desire
+**As a** player \
+**I want** to be able to play more than one game \
+**So that** I can play the number of games I desire
 
-### User Needs:
+### User Needs
 
 - A clear and intuitive lay out
 - Controls to amend the existing guesses prior to submission 
@@ -40,9 +40,9 @@ So that I can play the number of games I desire
 - A clear end game phase
 - A method of starting a new game
 
-### Flowchart
+### Process Flowchart
 
-Here is the flowchart I created to visualise the processes in the game and where the user inputs were:
+I created this flowchart to visualise the processes in the game and where the user inputs were.
 
 ```mermaid
 flowchart TD
@@ -60,6 +60,8 @@ flowchart TD
     J --> B
 ```
 
+## Design
+
 ### Wireframes
 
 With my list of requirements, I created two wireframes. One for the mobile version and one for the tablet/desktop version. 
@@ -74,31 +76,39 @@ This game already has 4 bold primary/secondary colours, as well as black and whi
 
 ![Colour Scheme](documentation/colour-scheme.png)
 
-## FEATURES
+## Features
 
-### Existing Features
+### Computer Choice Indicator / Game End Message
+![Choice](documentation/choice.png)
 
-#### Computer Choice Indicator
+At the start, this section of the screen indicates to the user that the computer has chosen and set the code for this game. When the user has either cracked the code or the 10 round are up, whichever is sooner, this changes to display the end game messaging depending on whether the user has won or if not, how many the user has gotten correct.
 
-#### Navigation Section
+![Win](documentation/win.png)
 
-This section contains the 'Rules', 'New Game' and 'About' buttons. 
+### Navigation Section
+![Buttons](documentation/buttons.png)
 
-#### Game Area
+This section contains the 'Rules' and 'New Game' buttons that allow you to read the rules in a pop up, or start a new game respectively. 
 
-#### Controls Panel
+![Rules](documentation/rules.png)
 
-#### Rules Information
+### Game Area
+![Game Area](documentation/game-area.png)
 
-#### About Information
+This is where a row for each round is populated with the four circles for the user to colour as a guess, and the feedback on that row when the guess is submitted. The new rows populate from the top, pushing previous rounds down the screen. The top row is also highlighted to reinforce the focus of the user to the current round at the top of the game area. 
+
+### Controls Panel
+![Controls](documentation/controls.png)
+
+This is where the user can select which colours they would like to populate the current round row with. They can also delete the latest colour chosen or reset the row as many times as they want until they click the submit button to lock in their guess for this round. 
 
 ### Features Left to Implement
 
 #### Dark Mode
-
-#### Hard Mode
+Although this was designed to be less harsh on the eyes than the original, brighter primary colours utilised in the physical board game, some people may prefer a dark mode. People who want to play a bit before bed without too much light from their screen, or those that have different visual accessibility needs may appreciate a dark mode.
 
 #### Endless Guess Mode
+This could be an easier mode for those less capable of completing the game within 10 rounds. Or for new players to practice and get to the answer eventually, following along every stage, before switching to the usual 10-round version of the game. 
 
 ## TESTING
 

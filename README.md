@@ -119,8 +119,22 @@ I completed the following types of testing throughout development and at the end
 As well as running through the list of user needs and ensuring all the features collectively meet all of the needs, I completed the following manual feature testing: 
 
 
-| Feature           | Test Case | Outcome | Bugs? |
+| Feature           | Test Case | Expected Outcome | Bugs? |
 | ----------------  | -------   | ----    | ----- |
+| Code Set/Game End Message | Check the correct message present at game start | "Code Set" present at start | None|
+| | Check the correct message shows when the user wins | "YOU WIN!" present when user wins | Bug 7 |
+| | Check the correct message shows when the user gets 1, 2 or 3 correct | Relevant message appears if no win after 10 rounds | Bug 7 |
+| | Check the circles are highlighted at game end indicating which answers were correct | All circles are highlighted if the user wins. The correct answers the user gave are highlighted if they've guessed at least one correctly | Bug 3
+| Navigation Section | Check the "Rules" button works | The rules appear when the button is clicked | None |
+| | Check the "New Game" button works | The old game is cleared and a new game starts with a new secret code | None |
+| Game Area | Check new rows appear in the game area correctly | A new row appears after the previous one is submitted if the game hasn't ended due to winning or 10 rounds being played| None |
+| | Check that the correct feedback is given after submission | The correct feedback is given in the correct row | Bugs 2,4+5|
+| Controls Panel | Check colours are populated correctly when clicked | Colours are updated on the current row in the game area, from left to right | None |
+| | Check the "Reset" button works correctly | The current row is cleared of all colours, regardless of how many were entered | None |
+| | Check the "Undo" button works correctly | The last colour entered into the current row is cleared and the circle goes back to grey | None |
+| | Check the "Submit" button works correctly | The current row is locked in and feedback is given but only if 4 colours have been selected. | Bug 1 |
+| Error Message | Check the error message appears if submit button is pressed prematurely | If the submit button is clicked and there are less than 4 circles which have their colour selected, a pop up error message appears and the user may not continue with submission | None |
+
 
 ### Browser Compatibility and Screen Size Responsiveness
 
@@ -136,28 +150,32 @@ Pixel references for each of the screen sizes
 
 | Browser | Screen Size | Appearance | Responsiveness |
 |-------|-----|-----|-----|
-| Chrome | Mobile |  |  |
-| | Tablet |  |  |
-| | Computer |  |  |
-| | Transition Points |  |  |
-| Firefox | Mobile |  |  |
-| | Tablet |  |  |
-| | Computer |  |  |
-| | Transition Points |  |  |
-| Safari | Mobile |  |  |
-| | Tablet |  |  |
-| | Computer |  |  |
-| | Transition Points |  |  |
-| Edge | Mobile |  |  |
-| | Tablet |  |  |
-| | Computer |  |  |
-| | Transition Points |  |  |
+| Chrome | Mobile | Good  | Good|
+| | Tablet | Good | Good |
+| | Computer | Bug 6 | Good |
+| | Transition Points | Good | Good |
+| Firefox | Mobile | Good | Good |
+| | Tablet | Good | Good |
+| | Computer | Good | Good |
+| | Transition Points | Good | Good |
+| Safari | Mobile | Issue 1* | Good  |
+| | Tablet | Issue 1* | Good  |
+| | Computer | Issue 1* | Good |
+| | Transition Points | Issue 1* | Good |
+| Edge | Mobile | Good | Good |
+| | Tablet | Good | Good |
+| | Computer | Good | Good |
+| | Transition Points | Good | Good |
+
+*Issue 1: it appears there is currently a bug outside my control as [explained here](https://bugs.webkit.org/show_bug.cgi?id=231590) 
 
 #### Key Responsiveness Differences
 
 The game takes up the whole width of the screen in mobile phone and smaller tablet sizes. The footer is fixed and contains the controls in a row for this size. 
 
 In the larger tablets upwards (including laptops and desktop monitors), the game appears in the centre of the screen and the controls are no longer found in the footer, but in a column alongside the main game area. 
+
+The difference between these screen sizes can be seen in screenshots for bugs one (mobile/small tablet) and siz (larger screens).
 
 ### Code Validation
 
@@ -170,7 +188,10 @@ I completed the validation after resolving all my bugs.
 
 The CSS...
 
-The HTML...
+The HTML needed the following changes: 
+1. I had to close one of my `<div>` elements that I'd forgotten to close.
+2. I had to change the headings of my two modal boxes to use a `<h2>` element instead of a `<h1>`
+3. I needed to add a non-displaying heading for my main game area section, to inform screen-reader users.
 
 The JavaScript...
 

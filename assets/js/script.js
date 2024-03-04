@@ -410,7 +410,7 @@ closeMessageButton.addEventListener("click", hideMessage);
 /**
  * This function below is just to hide the Message modal box
  */
-function hideMessage () {
+function hideMessage() {
     const messageModal = document.getElementById("message-modal");
     messageModal.style.display = "none";
 }

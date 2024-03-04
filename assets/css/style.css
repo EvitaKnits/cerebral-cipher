@@ -108,6 +108,10 @@ h2 {
   border-top: 2px solid #9E5252;
 }
 
+#game-area h2 {
+  display: none;
+}
+
 /* GUESS ROW */
 
 .guess-row {
@@ -258,7 +262,7 @@ footer {
 
 /* The background */
 .modal {
-  display:none;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -266,13 +270,14 @@ footer {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0); /* Backup colour */
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  /* Backup colour */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* The box */
 .modal-content {
-  background-color:#CDCDCD;
+  background-color: #CDCDCD;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #6D7F86;
@@ -287,10 +292,16 @@ footer {
   font-weight: bold;
 }
 
-.close-modal:hover, .close-modal:focus {
+.close-modal:hover,
+.close-modal:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-content h2 {
+  font-family: 'Expletus Sans', sans-serif;
+  border-bottom: 2px solid #6D7F86;
 }
 
 /* Media query for small devices (767px and down) as per W3 Schools Typical Device Breakpoints */

@@ -60,11 +60,12 @@ function createNewGame() {
         CODECIRCLES[i].classList.replace(CODECIRCLES[i].classList[1], "grey");
         CODECIRCLES[i].classList.remove("glow");
     }
-    
+
     CURRENTGAMECOLOURS = [];
     GUESSROW.currentRound = 1;
     GUESSROW.circles = [];
     GUESSROW.feedback = [];
+    // I learnt how to disable buttons here: https://www.altcademy.com/blog/how-to-disable-a-button-in-javascript/)
     for (let i = 0; i < UNDOBUTTON.length; i++) {
         UNDOBUTTON[i].disabled = false;
         RESETBUTTON[i].disabled = false;
@@ -74,7 +75,8 @@ function createNewGame() {
 }
 
 /**
- * This function randomly chooses four colours and their positions in the code line up.
+ * This function randomly chooses four colours and their positions in the code line up. I learnt how to get a random number
+ * between 1 and 6 here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
  */
 function gameSetup() {
     //get a random number between two numbers (inclusive)
@@ -100,7 +102,8 @@ function gameSetup() {
 }
 
 /* This event listener listens for the clicking of any element and invokes the colourAssignment function which only does something
-if the element clicked is a circle in the control panel, and changes the colour of the current guess row circle to the correct colour. */
+if the element clicked is a circle in the control panel, and changes the colour of the current guess row circle to the correct colour.
+I learnt how to use event delegation here: https://byby.dev/js-add-event-listener */
 
 document.addEventListener("click", colourAssignment);
 
@@ -226,7 +229,7 @@ function checkUserSubmission() {
             currentColoursCopy[i] = "null";
         }
     }
-
+    //I learnt how to use indexof here: https://www.w3schools.com/jsref/jsref_indexof.asp
     for (let i = 0; i < currentColoursCopy.length; i++) {
         if (currentGuessCopy.includes(currentColoursCopy[i])) {
             GUESSROW.feedback.push("white");
@@ -263,7 +266,7 @@ function provideFeedback() {
         currentFeedbackCopy[i] = GUESSROW.feedback[i];
     }
 
-    //Fisher Yates method of shuffling my feedback array - learnt at W3 schools
+    //Fisher Yates method of shuffling my feedback array - learnt at W3 schools: https://www.w3schools.com/js/js_array_sort.asp
     for (let i = currentFeedbackCopy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const k = currentFeedbackCopy[i];

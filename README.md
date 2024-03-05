@@ -241,6 +241,8 @@ I believed I had ensured that the user could not click the submit button if they
 #### Fix:
 In my investigation, I found that the line of code I had intended to perform this check inside the userSubmission function `if (GUESSROW.circles.length === 4) {` wasn't actually going to to achieve the desired outcome. I had to change things so the submit button would be disabled by default and then conditionally enabled. Please see the difference between [this commit before](https://github.com/EvitaKnits/cerebral-cipher/commit/d8690fcfeb51c358c2ff1a60c5cd87e6e7bc58d2) and [this commit after](https://github.com/EvitaKnits/cerebral-cipher/commit/efa6433d3fcad936e2bfc3b39c7b67555854a38f) for the changes I made to achieve this.
 
+Note: in my work after fixing this bug, I moved away from this approach and added a pop-up error message if a user tries to submit a guess with less than 4 circles filled in. This is more informative than simply not being able to use a button because its greyed out. 
+
 ---
 
 ### Bug Two
@@ -428,7 +430,6 @@ The steps to deploy are as follows:
 - I learnt how to disable buttons with JavaScript at [Altcademy](https://www.altcademy.com/blog/how-to-disable-a-button-in-javascript/)
 - I learnt about pointer events via tutoring and this page from [W3 Schools](https://www.w3schools.com/csSref/css3_pr_pointer-events.php)
 - I learnt how to do the Fisher Yates Method of shuffling an array at [W3 Schools](https://www.w3schools.com/js/js_array_sort.asp)
-- I learnt how to check if all array elements pass a test at [JavaScript Tutorial](https://www.javascripttutorial.net/javascript-every/)
 - I learnt how to use indexOf at [W3 Schools](https://www.w3schools.com/jsref/jsref_indexof.asp)
 
 
@@ -437,4 +438,4 @@ I want to thank the open source community for the great resources that teach me 
 
 I believe I have specifically credited where I used specific items in the previous section but this is a general credit to the reference resources I looked through to remind me how things worked as I went along.  
 
-Every effort has been made to credit everything used but if I find anything else specific later on that needs crediting, that I missed, I will add it. 
+Every effort has been made to credit everything used but if I find anything else specific later on that needs crediting, that I missed, I will ensure to add it. 
